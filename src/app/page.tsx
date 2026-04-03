@@ -10,6 +10,7 @@ import { MissionBriefing } from "@/components/ui/MissionBriefing";
 import { TutorialOverlay } from "@/components/ui/TutorialOverlay";
 import { ObjectivesTracker } from "@/components/ui/ObjectivesTracker";
 import { LiveIntelWidget } from "@/components/ui/LiveIntelWidget";
+import { MobileLayout } from "@/components/MobileLayout";
 import { missionState } from "@/lib/mission-state";
 
 // Load the 3D canvas client-side only (no SSR)
@@ -20,10 +21,25 @@ const OmenJourney = dynamic(
 
 export default function Home() {
   const [phase, setPhase] = useState(missionState.phase);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     return missionState.onPhaseChange(setPhase);
   }, []);
+
+  // Wait until screen size is known — prevents desktop boot/WASD from flashing on mobile
+  if (isMobile === null) return null;
+
+  if (isMobile) {
+    return <MobileLayout />;
+  }
 
   return (
     <main style={{ background: "#0f1923", height: "100vh", overflow: "hidden" }}>
