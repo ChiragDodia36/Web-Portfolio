@@ -1,0 +1,78 @@
+<h2>3 Approaches for Your Scroll-Driven 3D Portfolio</h2>
+<p class="subtitle">Each approach uses Next.js + Three.js (React Three Fiber) + GSAP ScrollTrigger. The difference is in the 3D storytelling concept.</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)" style="padding: 24px;">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>The Orbit — Recommended</h3>
+      <p style="margin-bottom: 12px;">Your career as a journey through space. The camera orbits around a central floating geometry (a polyhedron that morphs per section). Each scroll section transitions the camera to a new "planet" or station.</p>
+      <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+        <strong style="color: #ccc;">The Scroll Journey:</strong>
+        <ol style="margin: 8px 0; padding-left: 20px; color: #999; line-height: 1.8;">
+          <li><strong style="color: #fff;">Hero:</strong> Camera drifts through a starfield, your name assembles from floating particles</li>
+          <li><strong style="color: #fff;">About:</strong> Camera pulls back to reveal a glowing orb — your "core" — with orbiting rings of tech icons</li>
+          <li><strong style="color: #fff;">Skills:</strong> Tech stack icons orbit in 3D constellation groups (Mobile, Backend, AI/ML, DevOps)</li>
+          <li><strong style="color: #fff;">Projects:</strong> Each project is a floating "card station" the camera flies to — hover for details</li>
+          <li><strong style="color: #fff;">Experience:</strong> A 3D timeline ribbon stretching through space — DotMinds → L&T → IU</li>
+          <li><strong style="color: #fff;">Contact:</strong> Camera settles on a quiet platform with a glowing contact form</li>
+        </ol>
+      </div>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Most immersive and cinematic</li><li>Unique spatial memory — visitors remember the "space journey"</li><li>Natural scroll pacing</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Heaviest 3D — needs performance optimization</li><li>Most complex to build</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)" style="padding: 24px;">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>The Layers — Clean & Architectural</h3>
+      <p style="margin-bottom: 12px;">Flat content planes stacked in 3D depth. As you scroll, each section slides/rotates into view like architectural layers peeling apart. Think: Apple product reveal meets developer portfolio.</p>
+      <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+        <strong style="color: #ccc;">The Scroll Journey:</strong>
+        <ol style="margin: 8px 0; padding-left: 20px; color: #999; line-height: 1.8;">
+          <li><strong style="color: #fff;">Hero:</strong> Your name on a floating glass plane that tilts with mouse movement</li>
+          <li><strong style="color: #fff;">About:</strong> Panel slides in from depth, text reveals line by line with parallax</li>
+          <li><strong style="color: #fff;">Skills:</strong> Tech icons on floating glass cards that fan out in 3D space</li>
+          <li><strong style="color: #fff;">Projects:</strong> Project cards arranged in z-depth, scroll to bring each forward</li>
+          <li><strong style="color: #fff;">Experience:</strong> Timeline cards stacked in perspective, unstacking as you scroll</li>
+          <li><strong style="color: #fff;">Contact:</strong> Final plane glides forward, form with subtle glass morphism</li>
+        </ol>
+      </div>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Lighter on GPU — more accessible</li><li>Easier to maintain content</li><li>Feels premium without being overwhelming</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Less "wow" factor than a full 3D world</li><li>More common pattern (though still rare when done well)</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)" style="padding: 24px;">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>The Machine — Code-as-Art</h3>
+      <p style="margin-bottom: 12px;">Your portfolio as a living machine/circuit board. Scrolling powers the machine — particles flow through connections, gears turn, data visualizations pulse. Your skills and projects are nodes in this machine.</p>
+      <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+        <strong style="color: #ccc;">The Scroll Journey:</strong>
+        <ol style="margin: 8px 0; padding-left: 20px; color: #999; line-height: 1.8;">
+          <li><strong style="color: #fff;">Hero:</strong> A dormant machine awakens — particles begin flowing, your name illuminates</li>
+          <li><strong style="color: #fff;">About:</strong> Camera follows a particle stream to your story, text embedded in the machine</li>
+          <li><strong style="color: #fff;">Skills:</strong> Skill nodes light up in a neural-network-like 3D graph</li>
+          <li><strong style="color: #fff;">Projects:</strong> Each project is a "module" in the machine — click to expand</li>
+          <li><strong style="color: #fff;">Experience:</strong> Data flows through a pipeline representing your career progression</li>
+          <li><strong style="color: #fff;">Contact:</strong> The machine's "output terminal" — a sleek form</li>
+        </ol>
+      </div>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Most thematically connected to engineering</li><li>Particle systems are visually stunning</li><li>Unique metaphor nobody else has</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Can feel cold if not balanced with personal elements</li><li>Complex particle system management</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 24px; padding: 20px; background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.2); border-radius: 8px;">
+  <strong style="color: #ffd700;">My Recommendation: Approach A — The Orbit</strong>
+  <p style="color: #999; margin-top: 8px;">It delivers the strongest "first impression" factor. The space metaphor scales naturally — adding new projects/skills just means adding new orbital stations. Combined with your clean & premium tone, it'll feel like a luxury space interface rather than a gimmick. The performance concerns are manageable with proper LOD, lazy loading, and progressive enhancement for mobile.</p>
+</div>

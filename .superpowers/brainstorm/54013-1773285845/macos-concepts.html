@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futuristic macOS Portfolio Concepts</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #08080c; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif; }
+
+  .page-header {
+    text-align: center; padding: 40px 20px 10px;
+    background: linear-gradient(to bottom, #08080c, transparent);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .page-header h1 { font-size: 26px; font-weight: 600; }
+  .page-header p { color: #555; font-size: 13px; margin-top: 6px; }
+
+  .concept {
+    max-width: 1100px; margin: 50px auto; padding: 0 20px;
+  }
+  .concept-label {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+  }
+  .concept-letter {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; flex-shrink: 0;
+  }
+  .concept:nth-child(2) .concept-letter { background: rgba(120,120,255,0.15); color: #88f; border: 2px solid rgba(120,120,255,0.4); }
+  .concept:nth-child(4) .concept-letter { background: rgba(255,180,100,0.12); color: #fb4; border: 2px solid rgba(255,180,100,0.3); }
+  .concept:nth-child(6) .concept-letter { background: rgba(100,220,255,0.12); color: #6df; border: 2px solid rgba(100,220,255,0.3); }
+  .concept-title { font-size: 20px; font-weight: 600; }
+  .concept-desc { color: #777; font-size: 13px; margin-top: 3px; }
+  .rec-tag { font-size: 10px; background: rgba(255,215,0,0.12); color: #ffd700; padding: 3px 8px; border-radius: 10px; font-weight: 600; margin-left: 8px; letter-spacing: 0.5px; }
+
+  .viewport {
+    background: #0c0c14; border-radius: 14px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06); position: relative;
+    height: 540px;
+  }
+  .viewport canvas { width: 100%; height: 100%; display: block; }
+
+  .scenes-row {
+    display: flex; gap: 10px; margin-top: 14px; overflow-x: auto;
+    padding-bottom: 6px;
+  }
+  .scenes-row::-webkit-scrollbar { height: 3px; }
+  .scenes-row::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+  .scene-card {
+    flex-shrink: 0; width: 155px; border-radius: 8px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06); background: #0c0c14;
+  }
+  .scene-card canvas { width: 155px; height: 95px; display: block; }
+  .scene-info {
+    padding: 7px 10px; font-size: 11px; color: #666;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .scene-info strong { color: #aaa; display: block; margin-bottom: 1px; font-size: 11px; }
+
+  .pick-bar {
+    margin-top: 18px; text-align: center; padding: 14px;
+    background: rgba(255,255,255,0.02); border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+    cursor: pointer; transition: all 0.3s;
+  }
+  .pick-bar:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); }
+  .pick-bar.active { border-color: rgba(120,120,255,0.5); background: rgba(120,120,255,0.08); }
+  .pick-btn {
+    background: none; border: 2px solid #444; color: #aaa; padding: 9px 28px;
+    border-radius: 8px; font-size: 13px; cursor: pointer; font-weight: 500;
+    transition: all 0.3s;
+  }
+  .pick-btn:hover { border-color: #88f; color: #88f; }
+  .active .pick-btn { border-color: #88f; color: #88f; background: rgba(120,120,255,0.1); }
+
+  .sep { max-width: 1100px; margin: 60px auto; height: 1px; background: linear-gradient(to right, transparent, #1a1a1a, transparent); }
+
+  .bottom-note { text-align: center; padding: 30px 20px 50px; color: #444; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Futuristic macOS Portfolio Concepts</h1>
+  <p>3 takes on a macOS-inspired 3D portfolio. Each is animated below.</p>
+</div>
+
+<!-- CONCEPT A -->
+<div class="concept" id="concept-a">
+  <div class="concept-label">
+    <div class="concept-letter">A</div>
+    <div>
+      <div class="concept-title">macOS Desktop Experience <span class="rec-tag">RECOMMENDED</span></div>
+      <div class="concept-desc">Your portfolio IS a futuristic macOS desktop. A dock at the bottom, floating windows for each section, a dynamic wallpaper behind everything. Click dock icons to open "apps" — About.app, Projects.app, Skills.app. Windows can be dragged, minimized, layered.</div>
+    </div>
+  </div>
+  <div class="viewport"><canvas id="cv-a"></canvas></div>
+  <div class="scenes-row" id="thumbs-a"></div>
+  <div class="pick-bar" onclick="pick('a')"><button class="pick-btn">Select macOS Desktop</button></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- CONCEPT B -->
+<div class="concept" id="concept-b">
+  <div class="concept-label">
+    <div class="concept-letter">B</div>
+    <div>
+      <div class="concept-title">Vision Pro Spatial UI</div>
+      <div class="concept-desc">Inspired by Apple Vision Pro — floating translucent panels in a dark 3D void. As you scroll, panels glide toward you with depth-of-field blur. Each section is a spatial card hovering in space with glass morphism and subtle light refractions.</div>
+    </div>
+  </div>
+  <div class="viewport"><canvas id="cv-b"></canvas></div>
+  <div class="scenes-row" id="thumbs-b"></div>
+  <div class="pick-bar" onclick="pick('b')"><button class="pick-btn">Select Vision Pro Spatial</button></div>
+</div>
+
+<div class="sep"></div>
+
+<!-- CONCEPT C -->
+<div class="concept" id="concept-c">
+  <div class="concept-label">
+    <div class="concept-letter">C</div>
+    <div>
+      <div class="concept-title">Finder Journey</div>
+      <div class="concept-desc">A cinematic Finder-like file browser in 3D space. Your career is organized as folders and files that open as you scroll — each "folder" expands into a 3D scene. Column view navigation, but the columns stretch into infinite depth. Scroll = navigating deeper into your story.</div>
+    </div>
+  </div>
+  <div class="viewport"><canvas id="cv-c"></canvas></div>
+  <div class="scenes-row" id="thumbs-c"></div>
+  <div class="pick-bar" onclick="pick('c')"><button class="pick-btn">Select Finder Journey</button></div>
+</div>
+
+<div class="bottom-note">Click "Select" on your favorite, then return to the terminal.</div>
+
+<script>
+// ========== Canvas Helpers ==========
+function initCanvas(id) {
+  const c = document.getElementById(id);
+  const dpr = window.devicePixelRatio || 1;
+  const rect = c.parentElement.getBoundingClientRect();
+  c.width = rect.width * dpr; c.height = rect.height * dpr;
+  c.style.width = rect.width + 'px'; c.style.height = rect.height + 'px';
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  return { ctx, w: rect.width, h: rect.height };
+}
+function initThumb(canvas, tw, th) {
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = tw * dpr; canvas.height = th * dpr;
+  canvas.style.width = tw + 'px'; canvas.style.height = th + 'px';
+  const ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr);
+  return ctx;
+}
+
+// ========== Shared Drawing ==========
+function roundRect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
+
+function drawGlassPanel(ctx, x, y, w, h, r, opts = {}) {
+  const { bg = 'rgba(255,255,255,0.04)', border = 'rgba(255,255,255,0.1)', glow = null } = opts;
+  if (glow) {
+    const g = ctx.createRadialGradient(x + w/2, y + h/2, 0, x + w/2, y + h/2, Math.max(w, h));
+    g.addColorStop(0, glow); g.addColorStop(1, 'transparent');
+    ctx.fillStyle = g; ctx.fillRect(x - 40, y - 40, w + 80, h + 80);
+  }
+  // Shadow
+  ctx.fillStyle = 'rgba(0,0,0,0.25)';
+  roundRect(ctx, x + 2, y + 3, w, h, r); ctx.fill();
+  // Panel
+  ctx.fillStyle = bg;
+  roundRect(ctx, x, y, w, h, r); ctx.fill();
+  // Border
+  ctx.strokeStyle = border; ctx.lineWidth = 1;
+  roundRect(ctx, x, y, w, h, r); ctx.stroke();
+  // Top highlight
+  const hl = ctx.createLinearGradient(x, y, x + w, y);
+  hl.addColorStop(0, 'transparent'); hl.addColorStop(0.3, 'rgba(255,255,255,0.06)');
+  hl.addColorStop(0.7, 'rgba(255,255,255,0.06)'); hl.addColorStop(1, 'transparent');
+  ctx.fillStyle = hl; ctx.fillRect(x + r, y, w - r * 2, 1);
+}
+
+function drawWindowChrome(ctx, x, y, w, title, active) {
+  // Title bar
+  ctx.fillStyle = active ? 'rgba(255,255,255,0.07)' : 'rgba(255,255,255,0.03)';
+  roundRect(ctx, x, y, w, 28, [8, 8, 0, 0]); ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(x, y + 28); ctx.lineTo(x + w, y + 28); ctx.stroke();
+  // Traffic lights
+  const colors = ['#ff5f57', '#febc2e', '#28c840'];
+  colors.forEach((c, i) => {
+    ctx.fillStyle = active ? c : 'rgba(255,255,255,0.1)';
+    ctx.beginPath(); ctx.arc(x + 16 + i * 18, y + 14, 5, 0, Math.PI * 2); ctx.fill();
+  });
+  // Title
+  ctx.font = '500 11px -apple-system, sans-serif';
+  ctx.fillStyle = active ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.25)';
+  ctx.textAlign = 'center';
+  ctx.fillText(title, x + w / 2, y + 18);
+  ctx.textAlign = 'left';
+}
+
+function drawDock(ctx, w, h, icons, time) {
+  const dockW = icons.length * 52 + 24;
+  const dockX = (w - dockW) / 2;
+  const dockY = h - 65;
+  // Dock glass
+  ctx.fillStyle = 'rgba(255,255,255,0.04)';
+  roundRect(ctx, dockX, dockY, dockW, 52, 14); ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)'; ctx.lineWidth = 1;
+  roundRect(ctx, dockX, dockY, dockW, 52, 14); ctx.stroke();
+  // Icons
+  icons.forEach((icon, i) => {
+    const ix = dockX + 12 + i * 52 + 16;
+    const iy = dockY + 26;
+    const bounce = Math.sin(time * 3 + i * 0.8) * 2;
+    // Icon bg
+    const ig = ctx.createRadialGradient(ix, iy + bounce, 0, ix, iy + bounce, 16);
+    ig.addColorStop(0, icon.color + '40'); ig.addColorStop(1, icon.color + '10');
+    ctx.fillStyle = ig;
+    roundRect(ctx, ix - 16, iy - 16 + bounce, 32, 32, 8); ctx.fill();
+    ctx.strokeStyle = icon.color + '50'; ctx.lineWidth = 1;
+    roundRect(ctx, ix - 16, iy - 16 + bounce, 32, 32, 8); ctx.stroke();
+    // Icon symbol
+    ctx.font = '14px -apple-system, sans-serif';
+    ctx.fillStyle = icon.color;
+    ctx.textAlign = 'center';
+    ctx.fillText(icon.symbol, ix, iy + 5 + bounce);
+    // Active dot
+    if (icon.active) {
+      ctx.fillStyle = icon.color;
+      ctx.beginPath(); ctx.arc(ix, dockY + 48, 2, 0, Math.PI * 2); ctx.fill();
+    }
+  });
+  ctx.textAlign = 'left';
+}
+
+function drawMenuBar(ctx, w, time) {
+  ctx.fillStyle = 'rgba(0,0,0,0.5)';
+  ctx.fillRect(0, 0, w, 26);
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+  ctx.beginPath(); ctx.moveTo(0, 26); ctx.lineTo(w, 26); ctx.stroke();
+  //  logo
+  ctx.font = '600 14px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.7)';
+  ctx.fillText('', 14, 18);
+  // Menu items
+  ctx.font = '500 12px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  const items = ['Chirag Dodia', 'About', 'Skills', 'Projects', 'Experience', 'Contact'];
+  let mx = 36;
+  items.forEach((item, i) => {
+    ctx.fillStyle = i === 0 ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.4)';
+    if (i === 0) ctx.font = '600 12px -apple-system, sans-serif';
+    else ctx.font = '400 12px -apple-system, sans-serif';
+    ctx.fillText(item, mx, 17);
+    mx += ctx.measureText(item).width + 18;
+  });
+  // Right side
+  ctx.font = '400 11px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.textAlign = 'right';
+  const now = new Date();
+  ctx.fillText('Wed Mar 11  11:42 PM', w - 14, 17);
+  ctx.textAlign = 'left';
+}
+
+// ========== CONCEPT A: macOS Desktop ==========
+function drawDesktopHero(t) {
+  const { ctx, w, h } = initCanvas('cv-a');
+  const time = t * 0.001;
+
+  // Dynamic wallpaper — dark gradient with subtle aurora
+  const bg = ctx.createLinearGradient(0, 0, 0, h);
+  bg.addColorStop(0, '#0a0a1a');
+  bg.addColorStop(0.5, '#0e0e20');
+  bg.addColorStop(1, '#080812');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
+
+  // Aurora waves
+  for (let wave = 0; wave < 3; wave++) {
+    ctx.beginPath();
+    ctx.moveTo(0, h * 0.4);
+    for (let x = 0; x <= w; x += 4) {
+      const y = h * 0.35 + Math.sin(x * 0.003 + time * 0.3 + wave * 1.5) * 40
+                + Math.sin(x * 0.007 + time * 0.5) * 20 + wave * 30;
+      ctx.lineTo(x, y);
+    }
+    ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath();
+    const colors = ['rgba(80,60,180,0.04)', 'rgba(60,120,200,0.03)', 'rgba(100,60,160,0.025)'];
+    ctx.fillStyle = colors[wave]; ctx.fill();
+  }
+
+  // Menu bar
+  drawMenuBar(ctx, w, time);
+
+  // Windows
+  // About window (back)
+  const aw = 280, ah = 180;
+  const ax = w * 0.12, ay = 80;
+  drawGlassPanel(ctx, ax, ay, aw, ah, 10, { bg: 'rgba(20,20,35,0.85)', border: 'rgba(255,255,255,0.08)' });
+  drawWindowChrome(ctx, ax, ay, aw, 'About.app', false);
+  ctx.font = '400 11px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.3)';
+  for (let i = 0; i < 4; i++) {
+    const lw = [200, 180, 220, 140][i];
+    ctx.fillStyle = `rgba(255,255,255,${0.04 + i * 0.005})`;
+    roundRect(ctx, ax + 16, ay + 44 + i * 22, lw, 8, 4); ctx.fill();
+  }
+
+  // Skills window (mid)
+  const sw = 300, sh = 200;
+  const sx = w * 0.55, sy = 60;
+  const sfloat = Math.sin(time * 0.7) * 3;
+  drawGlassPanel(ctx, sx, sy + sfloat, sw, sh, 10, { bg: 'rgba(20,20,35,0.88)', border: 'rgba(255,255,255,0.1)' });
+  drawWindowChrome(ctx, sx, sy + sfloat, sw, 'Skills.app', false);
+  // Skill grid
+  const skills = ['TS', 'Swift', 'Kotlin', 'React', 'Node', 'AWS', 'Docker', 'Python'];
+  const skillColors = ['#3178c6', '#f05138', '#7f52ff', '#61dafb', '#68a063', '#ff9900', '#2496ed', '#3776ab'];
+  skills.forEach((s, i) => {
+    const col = i % 4, row = Math.floor(i / 4);
+    const bx = sx + 20 + col * 68, by = sy + sfloat + 44 + row * 60;
+    ctx.fillStyle = skillColors[i] + '15';
+    roundRect(ctx, bx, by, 58, 44, 6); ctx.fill();
+    ctx.strokeStyle = skillColors[i] + '30'; ctx.lineWidth = 1;
+    roundRect(ctx, bx, by, 58, 44, 6); ctx.stroke();
+    ctx.font = '600 13px -apple-system, sans-serif';
+    ctx.fillStyle = skillColors[i] + 'cc';
+    ctx.textAlign = 'center';
+    ctx.fillText(s, bx + 29, by + 28);
+  });
+  ctx.textAlign = 'left';
+
+  // Projects window (front, active)
+  const pw = 360, ph = 240;
+  const px = w * 0.3, py = 180;
+  const pfloat = Math.sin(time * 0.5 + 1) * 4;
+  drawGlassPanel(ctx, px, py + pfloat, pw, ph, 10, {
+    bg: 'rgba(18,18,32,0.92)', border: 'rgba(120,120,255,0.15)',
+    glow: 'rgba(100,100,255,0.03)'
+  });
+  drawWindowChrome(ctx, px, py + pfloat, pw, 'Projects.app — WC26 Fantasy Friends', true);
+  // Project content mock
+  ctx.fillStyle = 'rgba(100,100,255,0.06)';
+  roundRect(ctx, px + 16, py + pfloat + 40, pw - 32, 80, 8); ctx.fill();
+  ctx.font = '600 14px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.8)';
+  ctx.fillText('WC26 Fantasy Friends', px + 28, py + pfloat + 64);
+  ctx.font = '400 11px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.fillText('Full-Stack Fantasy Football Platform', px + 28, py + pfloat + 82);
+  ctx.fillText('TypeScript  /  FastAPI  /  PostgreSQL  /  AI', px + 28, py + pfloat + 100);
+  // Tags
+  const tags = ['Expo Router', 'Zustand', 'Firebase', 'On-Device AI'];
+  let tx = px + 16;
+  tags.forEach(tag => {
+    const tw = ctx.measureText(tag).width + 16;
+    ctx.fillStyle = 'rgba(120,120,255,0.1)';
+    roundRect(ctx, tx, py + pfloat + 132, tw, 22, 11); ctx.fill();
+    ctx.strokeStyle = 'rgba(120,120,255,0.2)'; ctx.lineWidth = 1;
+    roundRect(ctx, tx, py + pfloat + 132, tw, 22, 11); ctx.stroke();
+    ctx.font = '400 10px -apple-system, sans-serif';
+    ctx.fillStyle = 'rgba(120,120,255,0.7)';
+    ctx.fillText(tag, tx + 8, py + pfloat + 146);
+    tx += tw + 8;
+  });
+  // More project rows
+  for (let i = 0; i < 3; i++) {
+    ctx.fillStyle = 'rgba(255,255,255,0.03)';
+    roundRect(ctx, px + 16, py + pfloat + 168 + i * 22, pw - 32, 16, 4); ctx.fill();
+  }
+
+  // Dock
+  drawDock(ctx, w, h, [
+    { symbol: 'i', color: '#88aaff', active: true },
+    { symbol: '{}', color: '#68a063', active: true },
+    { symbol: '', color: '#f05138', active: false },
+    { symbol: '', color: '#ff9500', active: true },
+    { symbol: '@', color: '#64d2ff', active: false },
+  ], time);
+
+  // Spotlight hint
+  ctx.font = '400 11px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.15)';
+  ctx.textAlign = 'center';
+  ctx.fillText('Press Cmd+K to search anything', w / 2, h - 80);
+  ctx.textAlign = 'left';
+}
+
+// ========== CONCEPT B: Vision Pro Spatial ==========
+function drawVisionHero(t) {
+  const { ctx, w, h } = initCanvas('cv-b');
+  const time = t * 0.001;
+
+  // Deep void
+  const bg = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, w * 0.7);
+  bg.addColorStop(0, '#0e0e16'); bg.addColorStop(1, '#050508');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
+
+  // Ambient light dots
+  for (let i = 0; i < 40; i++) {
+    const dx = ((i * 8761 + 31) % 1000) / 1000 * w;
+    const dy = ((i * 5347 + 71) % 1000) / 1000 * h;
+    const pulse = Math.sin(time + i * 0.4) * 0.3 + 0.5;
+    ctx.fillStyle = `rgba(180,180,220,${pulse * 0.06})`;
+    ctx.beginPath(); ctx.arc(dx, dy, 1.2, 0, Math.PI * 2); ctx.fill();
+  }
+
+  const cx = w / 2, cy = h / 2;
+
+  // Background blurred panels (depth)
+  const backPanels = [
+    { x: cx - 320, y: cy - 60, w: 180, h: 130, blur: 0.6, label: 'Experience' },
+    { x: cx + 200, y: cy - 80, w: 170, h: 120, blur: 0.5, label: 'Contact' },
+  ];
+  backPanels.forEach((p, i) => {
+    const float = Math.sin(time * 0.4 + i * 2) * 6;
+    ctx.globalAlpha = 0.4;
+    ctx.fillStyle = 'rgba(255,255,255,0.02)';
+    roundRect(ctx, p.x, p.y + float, p.w, p.h, 16); ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)'; ctx.lineWidth = 1;
+    roundRect(ctx, p.x, p.y + float, p.w, p.h, 16); ctx.stroke();
+    ctx.font = '400 10px -apple-system, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.15)';
+    ctx.textAlign = 'center';
+    ctx.fillText(p.label, p.x + p.w/2, p.y + float + p.h/2 + 4);
+    ctx.globalAlpha = 1;
+  });
+
+  // Mid panels
+  const midFloat = Math.sin(time * 0.5) * 4;
+  // Skills panel (left)
+  drawGlassPanel(ctx, cx - 260, cy - 40 + midFloat, 200, 160, 16, {
+    bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.07)',
+  });
+  ctx.font = '500 12px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.textAlign = 'center';
+  ctx.fillText('Skills', cx - 160, cy - 14 + midFloat);
+  // Mini skill pills
+  const miniSkills = ['TypeScript', 'Swift', 'React Native', 'Node.js'];
+  miniSkills.forEach((s, i) => {
+    ctx.fillStyle = 'rgba(255,255,255,0.04)';
+    roundRect(ctx, cx - 245, cy + 4 + i * 28 + midFloat, 170, 20, 10); ctx.fill();
+    ctx.font = '400 10px -apple-system, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.fillText(s, cx - 160, cy + 18 + i * 28 + midFloat);
+  });
+
+  // Projects panel (right)
+  const midFloat2 = Math.sin(time * 0.5 + 1.5) * 5;
+  drawGlassPanel(ctx, cx + 80, cy - 30 + midFloat2, 200, 150, 16, {
+    bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.07)',
+  });
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.font = '500 12px -apple-system, sans-serif';
+  ctx.fillText('Projects', cx + 180, cy - 4 + midFloat2);
+  for (let i = 0; i < 3; i++) {
+    ctx.fillStyle = 'rgba(255,255,255,0.03)';
+    roundRect(ctx, cx + 96, cy + 14 + i * 34 + midFloat2, 168, 26, 8); ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
+    roundRect(ctx, cx + 96, cy + 14 + i * 34 + midFloat2, 168, 26, 8); ctx.stroke();
+  }
+  ctx.textAlign = 'left';
+
+  // Hero center panel (front, largest)
+  const heroFloat = Math.sin(time * 0.6 + 0.5) * 3;
+  const hpw = 320, hph = 180;
+  const hpx = cx - hpw/2, hpy = cy - hph/2 - 20 + heroFloat;
+  drawGlassPanel(ctx, hpx, hpy, hpw, hph, 20, {
+    bg: 'rgba(255,255,255,0.05)', border: 'rgba(255,255,255,0.12)',
+    glow: 'rgba(200,200,255,0.03)'
+  });
+  // Subtle inner glow
+  const ig = ctx.createRadialGradient(cx, hpy + hph/2, 0, cx, hpy + hph/2, 180);
+  ig.addColorStop(0, 'rgba(255,255,255,0.02)'); ig.addColorStop(1, 'transparent');
+  ctx.fillStyle = ig; roundRect(ctx, hpx, hpy, hpw, hph, 20); ctx.fill();
+
+  ctx.font = '600 32px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.textAlign = 'center';
+  ctx.fillText('Chirag Dodia', cx, hpy + 70);
+
+  ctx.font = '300 14px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.fillText('Mobile & Full-Stack Engineer', cx, hpy + 95);
+
+  // Subtle separator
+  ctx.fillStyle = 'rgba(255,255,255,0.08)';
+  ctx.fillRect(cx - 40, hpy + 110, 80, 1);
+
+  ctx.font = '400 11px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.25)';
+  ctx.fillText('Indiana University Bloomington', cx, hpy + 132);
+  ctx.fillText('MS Computer Science', cx, hpy + 150);
+
+  // Eye tracking dot hint
+  ctx.fillStyle = 'rgba(255,255,255,0.06)';
+  ctx.beginPath(); ctx.arc(cx, h - 40, 20, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = 'rgba(255,255,255,0.15)';
+  ctx.beginPath(); ctx.arc(cx, h - 40, 4, 0, Math.PI * 2); ctx.fill();
+  ctx.font = '400 10px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  ctx.fillText('Scroll to explore', cx, h - 20);
+  ctx.textAlign = 'left';
+}
+
+// ========== CONCEPT C: Finder Journey ==========
+function drawFinderHero(t) {
+  const { ctx, w, h } = initCanvas('cv-c');
+  const time = t * 0.001;
+
+  // Background
+  const bg = ctx.createLinearGradient(0, 0, 0, h);
+  bg.addColorStop(0, '#0a0a14'); bg.addColorStop(1, '#06060c');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
+
+  // Menu bar
+  drawMenuBar(ctx, w, time);
+
+  // Finder window taking most of screen
+  const fx = 40, fy = 40, fw = w - 80, fh = h - 90;
+  drawGlassPanel(ctx, fx, fy, fw, fh, 10, { bg: 'rgba(15,15,25,0.95)', border: 'rgba(255,255,255,0.08)' });
+  drawWindowChrome(ctx, fx, fy, fw, 'Finder — Chirag Dodia / Portfolio', true);
+
+  // Sidebar
+  const sbw = 180;
+  ctx.fillStyle = 'rgba(255,255,255,0.02)';
+  ctx.fillRect(fx, fy + 28, sbw, fh - 28);
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(fx + sbw, fy + 28); ctx.lineTo(fx + sbw, fy + fh); ctx.stroke();
+
+  // Sidebar items
+  ctx.font = '600 9px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.25)';
+  ctx.fillText('FAVORITES', fx + 16, fy + 52);
+
+  const sideItems = [
+    { name: 'About Me', icon: 'i', color: '#64d2ff', active: false },
+    { name: 'Skills', icon: '<>', color: '#ff9f0a', active: false },
+    { name: 'Projects', icon: '{}', color: '#30d158', active: true },
+    { name: 'Experience', icon: '', color: '#bf5af2', active: false },
+    { name: 'Contact', icon: '@', color: '#ff453a', active: false },
+  ];
+  sideItems.forEach((item, i) => {
+    const iy = fy + 64 + i * 30;
+    if (item.active) {
+      ctx.fillStyle = 'rgba(100,120,255,0.12)';
+      roundRect(ctx, fx + 8, iy - 4, sbw - 16, 24, 5); ctx.fill();
+    }
+    ctx.font = '13px -apple-system, sans-serif';
+    ctx.fillStyle = item.color;
+    ctx.fillText(item.icon, fx + 20, iy + 12);
+    ctx.font = '400 12px -apple-system, sans-serif';
+    ctx.fillStyle = item.active ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.4)';
+    ctx.fillText(item.name, fx + 42, iy + 12);
+  });
+
+  ctx.font = '600 9px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  ctx.fillText('TAGS', fx + 16, fy + 230);
+  const tagItems = ['React Native', 'SwiftUI', 'TypeScript', 'Python'];
+  const tagColors = ['#61dafb', '#f05138', '#3178c6', '#3776ab'];
+  tagItems.forEach((tag, i) => {
+    ctx.fillStyle = tagColors[i]; ctx.beginPath(); ctx.arc(fx + 20, fy + 250 + i * 24, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.font = '400 11px -apple-system, sans-serif'; ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.fillText(tag, fx + 32, fy + 254 + i * 24);
+  });
+
+  // Column view — 3 columns stretching into depth
+  const colX = fx + sbw + 1;
+  const colW = (fw - sbw) / 3;
+
+  // Column 1: Project list
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(colX + colW, fy + 28); ctx.lineTo(colX + colW, fy + fh); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(colX + colW * 2, fy + 28); ctx.lineTo(colX + colW * 2, fy + fh); ctx.stroke();
+
+  const projects = [
+    { name: 'WC26 Fantasy Friends', type: 'Full-Stack', selected: true },
+    { name: 'FinSight', type: 'AI/ML Agent', selected: false },
+    { name: 'Stock Trading', type: 'iOS Native', selected: false },
+    { name: 'E-Voting Blockchain', type: 'Web3', selected: false },
+    { name: 'Netflix Clone', type: 'iOS', selected: false },
+  ];
+  projects.forEach((p, i) => {
+    const py = fy + 38 + i * 42;
+    if (p.selected) {
+      ctx.fillStyle = 'rgba(100,120,255,0.1)';
+      ctx.fillRect(colX, py - 2, colW, 38);
+    }
+    ctx.font = '500 12px -apple-system, sans-serif';
+    ctx.fillStyle = p.selected ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.45)';
+    ctx.fillText(p.name, colX + 14, py + 14);
+    ctx.font = '400 10px -apple-system, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    ctx.fillText(p.type, colX + 14, py + 28);
+    // Arrow
+    if (p.selected) {
+      ctx.fillStyle = 'rgba(100,120,255,0.5)';
+      ctx.font = '12px -apple-system, sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText('>', colX + colW - 12, py + 20);
+      ctx.textAlign = 'left';
+    }
+  });
+
+  // Column 2: Project details
+  const c2x = colX + colW;
+  ctx.font = '600 14px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.75)';
+  ctx.fillText('WC26 Fantasy Friends', c2x + 14, fy + 56);
+
+  ctx.font = '400 11px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.3)';
+  ctx.fillText('Full-Stack Fantasy Football', c2x + 14, fy + 74);
+
+  // Tech tags
+  const ptags = ['TypeScript', 'FastAPI', 'PostgreSQL', 'AI'];
+  let ptx = c2x + 14;
+  ctx.font = '400 9px -apple-system, sans-serif';
+  ptags.forEach(tag => {
+    const tw = ctx.measureText(tag).width + 12;
+    ctx.fillStyle = 'rgba(100,120,255,0.08)';
+    roundRect(ctx, ptx, fy + 84, tw, 18, 9); ctx.fill();
+    ctx.fillStyle = 'rgba(100,120,255,0.5)';
+    ctx.fillText(tag, ptx + 6, fy + 96);
+    ptx += tw + 6;
+  });
+
+  // Details
+  const details = ['12 routes, 13 services', 'On-device AI (Qwen3 0.6B)', 'Firebase + JWT auth', 'Real-time scoring engine'];
+  ctx.font = '400 11px -apple-system, sans-serif';
+  details.forEach((d, i) => {
+    ctx.fillStyle = 'rgba(255,255,255,0.12)';
+    ctx.beginPath(); ctx.arc(c2x + 20, fy + 122 + i * 26, 2, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.fillText(d, c2x + 30, fy + 126 + i * 26);
+  });
+
+  // Column 3: Preview (3D-ish depth effect)
+  const c3x = colX + colW * 2;
+  // Preview box with perspective hint
+  const prevFloat = Math.sin(time * 0.6) * 3;
+  ctx.fillStyle = 'rgba(100,120,255,0.04)';
+  roundRect(ctx, c3x + 12, fy + 40 + prevFloat, colW - 24, 200, 8); ctx.fill();
+  ctx.strokeStyle = 'rgba(100,120,255,0.1)'; ctx.lineWidth = 1;
+  roundRect(ctx, c3x + 12, fy + 40 + prevFloat, colW - 24, 200, 8); ctx.stroke();
+
+  // Mock app preview
+  ctx.fillStyle = 'rgba(255,255,255,0.06)';
+  roundRect(ctx, c3x + 20, fy + 52 + prevFloat, colW - 40, 30, 4); ctx.fill();
+  ctx.font = '600 10px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.fillText('Live Preview', c3x + 30, fy + 72 + prevFloat);
+
+  for (let i = 0; i < 4; i++) {
+    ctx.fillStyle = `rgba(100,120,255,${0.03 + i * 0.01})`;
+    roundRect(ctx, c3x + 20, fy + 92 + i * 36 + prevFloat, colW - 40, 28, 4); ctx.fill();
+  }
+
+  // Path bar at bottom of Finder
+  ctx.fillStyle = 'rgba(255,255,255,0.02)';
+  ctx.fillRect(fx, fy + fh - 24, fw, 24);
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.beginPath(); ctx.moveTo(fx, fy + fh - 24); ctx.lineTo(fx + fw, fy + fh - 24); ctx.stroke();
+  ctx.font = '400 10px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.25)';
+  ctx.fillText('~ / Portfolio / Projects / WC26 Fantasy Friends', fx + 14, fy + fh - 9);
+}
+
+// ========== THUMBNAILS ==========
+function buildThumbs() {
+  const thumbSets = {
+    a: [
+      { label: 'Hero', desc: 'Desktop with windows', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a1a';ctx.fillRect(0,0,w,h); ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,0,w,12); drawMiniWin(ctx,10,18,50,35,'#88f'); drawMiniWin(ctx,40,30,60,40,'#6a6'); drawMiniDock(ctx,w,h); }},
+      { label: 'About', desc: 'Window opens center', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a1a';ctx.fillRect(0,0,w,h); ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,0,w,12); drawMiniWin(ctx,w/2-40,25,80,50,'#88f'); }},
+      { label: 'Skills', desc: 'Grid of skill cards', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a1a';ctx.fillRect(0,0,w,h); ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,0,w,12); for(let i=0;i<6;i++){const x=12+i%3*46,y=20+Math.floor(i/3)*32;ctx.fillStyle='rgba(120,120,255,0.08)';roundRect(ctx,x,y,40,26,3);ctx.fill();ctx.strokeStyle='rgba(120,120,255,0.15)';roundRect(ctx,x,y,40,26,3);ctx.stroke();} drawMiniDock(ctx,w,h); }},
+      { label: 'Projects', desc: 'Project windows stack', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a1a';ctx.fillRect(0,0,w,h); ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,0,w,12); drawMiniWin(ctx,15,20,55,40,'#6a6'); drawMiniWin(ctx,35,30,65,42,'#88f'); drawMiniDock(ctx,w,h); }},
+      { label: 'Experience', desc: 'Timeline window', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a1a';ctx.fillRect(0,0,w,h); ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,0,w,12); drawMiniWin(ctx,w/2-45,18,90,55,'#b8f'); ctx.strokeStyle='rgba(180,130,255,0.3)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(w/2-25,45);ctx.lineTo(w/2+25,45);ctx.stroke(); drawMiniDock(ctx,w,h); }},
+      { label: 'Contact', desc: 'Form window', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a1a';ctx.fillRect(0,0,w,h); ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,0,w,12); drawMiniWin(ctx,w/2-35,25,70,45,'#64d2ff'); drawMiniDock(ctx,w,h); }},
+    ],
+    b: [
+      { label: 'Hero', desc: 'Central glass panel', fn: (ctx,w,h) => { ctx.fillStyle='#0e0e16';ctx.fillRect(0,0,w,h); ctx.fillStyle='rgba(255,255,255,0.04)';roundRect(ctx,w/2-35,h/2-20,70,40,8);ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.1)';roundRect(ctx,w/2-35,h/2-20,70,40,8);ctx.stroke(); }},
+      { label: 'About', desc: 'Panel floats forward', fn: (ctx,w,h) => { ctx.fillStyle='#0e0e16';ctx.fillRect(0,0,w,h); ctx.fillStyle='rgba(255,255,255,0.03)';roundRect(ctx,25,20,110,60,8);ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.08)';roundRect(ctx,25,20,110,60,8);ctx.stroke(); }},
+      { label: 'Skills', desc: 'Spatial pill cards', fn: (ctx,w,h) => { ctx.fillStyle='#0e0e16';ctx.fillRect(0,0,w,h); for(let i=0;i<4;i++){ctx.fillStyle='rgba(255,255,255,0.03)';roundRect(ctx,15+i*33,h/2-10+i*3,28,22,6);ctx.fill();} }},
+      { label: 'Projects', desc: 'Cards in depth', fn: (ctx,w,h) => { ctx.fillStyle='#0e0e16';ctx.fillRect(0,0,w,h); for(let i=0;i<3;i++){ctx.fillStyle=`rgba(255,255,255,${0.02+i*0.015})`;roundRect(ctx,w/2-30+i*5,h/2-18-i*8,60,36,6);ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.06)';roundRect(ctx,w/2-30+i*5,h/2-18-i*8,60,36,6);ctx.stroke();} }},
+      { label: 'Experience', desc: 'Timeline panels', fn: (ctx,w,h) => { ctx.fillStyle='#0e0e16';ctx.fillRect(0,0,w,h); for(let i=0;i<3;i++){ctx.fillStyle='rgba(255,255,255,0.03)';roundRect(ctx,w/2-25,12+i*25,50,18,4);ctx.fill();} ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.beginPath();ctx.moveTo(w/2,30);ctx.lineTo(w/2,75);ctx.stroke(); }},
+      { label: 'Contact', desc: 'Floating form', fn: (ctx,w,h) => { ctx.fillStyle='#0e0e16';ctx.fillRect(0,0,w,h); ctx.fillStyle='rgba(255,255,255,0.04)';roundRect(ctx,w/2-35,h/2-18,70,36,10);ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.1)';roundRect(ctx,w/2-35,h/2-18,70,36,10);ctx.stroke(); }},
+    ],
+    c: [
+      { label: 'Hero', desc: 'Finder with sidebar', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a14';ctx.fillRect(0,0,w,h); drawMiniWin(ctx,5,5,w-10,h-10,'#6df'); ctx.fillStyle='rgba(255,255,255,0.02)';ctx.fillRect(5,18,45,h-23); ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.beginPath();ctx.moveTo(50,18);ctx.lineTo(50,h-5);ctx.stroke(); }},
+      { label: 'About', desc: 'File opens to panel', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a14';ctx.fillRect(0,0,w,h); drawMiniWin(ctx,5,5,w-10,h-10,'#6df'); ctx.fillStyle='rgba(100,200,255,0.06)';roundRect(ctx,55,22,w-65,h-30,4);ctx.fill(); }},
+      { label: 'Skills', desc: 'Icon view grid', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a14';ctx.fillRect(0,0,w,h); drawMiniWin(ctx,5,5,w-10,h-10,'#6df'); for(let i=0;i<6;i++){const x=58+i%3*30,y=24+Math.floor(i/3)*28;ctx.fillStyle='rgba(100,200,255,0.1)';roundRect(ctx,x,y,22,20,3);ctx.fill();} }},
+      { label: 'Projects', desc: 'Column view browse', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a14';ctx.fillRect(0,0,w,h); drawMiniWin(ctx,5,5,w-10,h-10,'#6df'); ctx.strokeStyle='rgba(255,255,255,0.04)';[55,95].forEach(x=>{ctx.beginPath();ctx.moveTo(x,18);ctx.lineTo(x,h-5);ctx.stroke();}); for(let i=0;i<4;i++){ctx.fillStyle=i===1?'rgba(100,120,255,0.1)':'transparent';ctx.fillRect(55,22+i*16,40,14);} }},
+      { label: 'Experience', desc: 'Timeline file view', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a14';ctx.fillRect(0,0,w,h); drawMiniWin(ctx,5,5,w-10,h-10,'#6df'); ctx.strokeStyle='rgba(180,130,255,0.2)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(55,h/2);ctx.lineTo(w-12,h/2);ctx.stroke();[65,95,125].forEach(x=>{ctx.fillStyle='rgba(180,130,255,0.4)';ctx.beginPath();ctx.arc(x,h/2,3,0,Math.PI*2);ctx.fill();}); }},
+      { label: 'Contact', desc: 'Terminal window', fn: (ctx,w,h) => { ctx.fillStyle='#0a0a14';ctx.fillRect(0,0,w,h); drawMiniWin(ctx,5,5,w-10,h-10,'#6df'); ctx.font='7px monospace';ctx.fillStyle='rgba(100,200,255,0.4)';ctx.fillText('> send_mail',15,40);ctx.fillText('  to: chirag@',15,52); }},
+    ]
+  };
+
+  Object.keys(thumbSets).forEach(key => {
+    const strip = document.getElementById('thumbs-' + key);
+    thumbSets[key].forEach(t => {
+      const div = document.createElement('div');
+      div.className = 'scene-card';
+      const canvas = document.createElement('canvas');
+      div.appendChild(canvas);
+      const info = document.createElement('div');
+      info.className = 'scene-info';
+      info.innerHTML = '<strong>' + t.label + '</strong>' + t.desc;
+      div.appendChild(info);
+      strip.appendChild(div);
+      const ctx = initThumb(canvas, 155, 95);
+      t.fn(ctx, 155, 95);
+    });
+  });
+}
+
+function drawMiniWin(ctx, x, y, w, h, color) {
+  ctx.fillStyle = 'rgba(15,15,25,0.85)';
+  roundRect(ctx, x, y, w, h, 4); ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+  roundRect(ctx, x, y, w, h, 4); ctx.stroke();
+  ctx.fillStyle = 'rgba(255,255,255,0.05)';
+  roundRect(ctx, x, y, w, 13, [4,4,0,0]); ctx.fill();
+  const dots = ['#ff5f57','#febc2e','#28c840'];
+  dots.forEach((c,i) => { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(x+8+i*8, y+7, 2.5, 0, Math.PI*2); ctx.fill(); });
+}
+function drawMiniDock(ctx, w, h) {
+  const dw = 80, dx = (w-dw)/2, dy = h - 14;
+  ctx.fillStyle = 'rgba(255,255,255,0.04)';
+  roundRect(ctx, dx, dy, dw, 12, 6); ctx.fill();
+  for(let i=0;i<5;i++){ctx.fillStyle='rgba(255,255,255,0.1)';ctx.beginPath();ctx.arc(dx+10+i*15,dy+6,3,0,Math.PI*2);ctx.fill();}
+}
+
+// ========== SELECTION ==========
+let selected = null;
+function pick(choice) {
+  selected = choice;
+  document.querySelectorAll('.pick-bar').forEach(b => b.classList.remove('active'));
+  document.querySelector('#concept-' + choice + ' .pick-bar').classList.add('active');
+  if (window.__brainstormHelper) {
+    window.__brainstormHelper.recordEvent({ type: 'click', choice, text: 'Concept ' + choice.toUpperCase() });
+  }
+}
+
+// ========== ANIMATE ==========
+function loop(t) {
+  drawDesktopHero(t);
+  drawVisionHero(t);
+  drawFinderHero(t);
+  requestAnimationFrame(loop);
+}
+buildThumbs();
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

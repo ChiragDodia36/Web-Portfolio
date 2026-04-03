@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hybrid Concept — Vision Pro Hero → macOS Desktop</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #08080c; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; }
+
+  .page-header {
+    text-align: center; padding: 40px 20px 10px;
+    position: sticky; top: 0; z-index: 100;
+    background: linear-gradient(to bottom, #08080c 80%, transparent);
+  }
+  .page-header h1 { font-size: 24px; font-weight: 600; }
+  .page-header p { color: #555; font-size: 13px; margin-top: 6px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+  .accent { color: #88aaff; }
+
+  .flow-label {
+    max-width: 1100px; margin: 40px auto 12px; padding: 0 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .flow-step {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    padding: 4px 10px; border-radius: 12px;
+  }
+  .flow-step.hero { background: rgba(180,160,255,0.12); color: #b8a0ff; border: 1px solid rgba(180,160,255,0.25); }
+  .flow-step.transition { background: rgba(255,200,100,0.1); color: #ffcc66; border: 1px solid rgba(255,200,100,0.2); }
+  .flow-step.desktop { background: rgba(100,160,255,0.1); color: #88aaff; border: 1px solid rgba(100,160,255,0.2); }
+  .flow-title { font-size: 16px; font-weight: 500; }
+  .flow-desc { color: #666; font-size: 12px; margin-left: auto; }
+
+  .viewport {
+    max-width: 1100px; margin: 0 auto; padding: 0 20px;
+  }
+  .viewport canvas {
+    width: 100%; display: block;
+    border-radius: 12px; border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .section-note {
+    max-width: 1100px; margin: 8px auto 0; padding: 0 20px;
+    font-size: 11px; color: #444; text-align: center;
+  }
+
+  .arrow-down {
+    text-align: center; padding: 20px 0;
+    font-size: 20px; color: #333;
+  }
+
+  .confirm-bar {
+    max-width: 600px; margin: 50px auto 60px; text-align: center;
+    padding: 20px; background: rgba(100,160,255,0.04);
+    border: 1px solid rgba(100,160,255,0.1); border-radius: 12px;
+  }
+  .confirm-bar p { color: #888; font-size: 13px; margin-bottom: 14px; line-height: 1.5; }
+  .confirm-btn {
+    background: rgba(100,160,255,0.1); border: 2px solid rgba(100,160,255,0.3);
+    color: #88aaff; padding: 10px 32px; border-radius: 8px;
+    font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s;
+  }
+  .confirm-btn:hover { background: rgba(100,160,255,0.15); border-color: rgba(100,160,255,0.5); }
+  .confirmed .confirm-btn { background: rgba(100,160,255,0.2); border-color: #88aaff; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>The Hybrid: <span class="accent">Vision Pro Hero</span> → <span class="accent">macOS Desktop</span></h1>
+  <p>Your portfolio opens with a cinematic Vision Pro spatial experience, then seamlessly transitions into an interactive macOS desktop where each section is a "window app."</p>
+</div>
+
+<!-- SCENE 1: Vision Pro Hero -->
+<div class="flow-label">
+  <span class="flow-step hero">SCENE 1</span>
+  <span class="flow-title">Vision Pro Hero — First Impression</span>
+  <span class="flow-desc">Floating glass panels in a 3D void</span>
+</div>
+<div class="viewport"><canvas id="cv-hero" height="540"></canvas></div>
+<div class="section-note">Visitor lands here. Translucent panels float with depth. Your name and title glow in the center. Ambient particles drift.</div>
+
+<div class="arrow-down">↓ scroll ↓</div>
+
+<!-- SCENE 2: Transition -->
+<div class="flow-label">
+  <span class="flow-step transition">TRANSITION</span>
+  <span class="flow-title">The Boot Sequence — Void Becomes Desktop</span>
+  <span class="flow-desc">3D space morphs into macOS</span>
+</div>
+<div class="viewport"><canvas id="cv-transition" height="540"></canvas></div>
+<div class="section-note">As user scrolls past the hero, the void contracts. A menu bar fades in at top, a dock rises from bottom, aurora wallpaper emerges. The desktop "boots up."</div>
+
+<div class="arrow-down">↓ scroll ↓</div>
+
+<!-- SCENE 3: Desktop — About -->
+<div class="flow-label">
+  <span class="flow-step desktop">DESKTOP</span>
+  <span class="flow-title">About.app — Your Story</span>
+  <span class="flow-desc">Window opens with your journey</span>
+</div>
+<div class="viewport"><canvas id="cv-about" height="480"></canvas></div>
+<div class="section-note">About.app window slides open. Mumbai → Bangalore → Indiana journey. Profile photo area + personal intro text.</div>
+
+<div class="arrow-down">↓ scroll ↓</div>
+
+<!-- SCENE 4: Desktop — Skills -->
+<div class="flow-label">
+  <span class="flow-step desktop">DESKTOP</span>
+  <span class="flow-title">Skills.app — Tech Stack Grid</span>
+  <span class="flow-desc">Interactive skill cards in a window</span>
+</div>
+<div class="viewport"><canvas id="cv-skills" height="480"></canvas></div>
+<div class="section-note">Skills.app opens with categorized cards: Mobile, Backend, AI/ML, DevOps. Each card has an icon, name, and proficiency indicator.</div>
+
+<div class="arrow-down">↓ scroll ↓</div>
+
+<!-- SCENE 5: Desktop — Projects -->
+<div class="flow-label">
+  <span class="flow-step desktop">DESKTOP</span>
+  <span class="flow-title">Projects.app — Showcase</span>
+  <span class="flow-desc">Project windows with details + live links</span>
+</div>
+<div class="viewport"><canvas id="cv-projects" height="480"></canvas></div>
+<div class="section-note">Projects.app window opens. Each project is a card with tech tags, description, and GitHub link. Click to expand into a detailed view.</div>
+
+<div class="arrow-down">↓ scroll ↓</div>
+
+<!-- SCENE 6: Desktop — Experience -->
+<div class="flow-label">
+  <span class="flow-step desktop">DESKTOP</span>
+  <span class="flow-title">Experience.app — Career Timeline</span>
+  <span class="flow-desc">Visual timeline in a window</span>
+</div>
+<div class="viewport"><canvas id="cv-experience" height="480"></canvas></div>
+<div class="section-note">Experience.app opens with a horizontal timeline: DotMinds → L&T Financial → IU. Each node expands to show role details.</div>
+
+<div class="arrow-down">↓ scroll ↓</div>
+
+<!-- SCENE 7: Desktop — Contact -->
+<div class="flow-label">
+  <span class="flow-step desktop">DESKTOP</span>
+  <span class="flow-title">Contact.app — Get In Touch</span>
+  <span class="flow-desc">Email form + mailto fallback</span>
+</div>
+<div class="viewport"><canvas id="cv-contact" height="480"></canvas></div>
+<div class="section-note">Contact.app with a clean form (Name, Email, Message) + Send button. Mailto link as backup. Social links in the dock.</div>
+
+<div class="confirm-bar" id="confirm" onclick="confirmDesign()">
+  <p>This is the full scroll journey: <strong>Vision Pro spatial hero</strong> → boot transition → <strong>macOS desktop</strong> with About, Skills, Projects, Experience, and Contact as window apps.</p>
+  <button class="confirm-btn">✓ Approve This Design Direction</button>
+</div>
+
+<script>
+function initCanvas(id) {
+  const c = document.getElementById(id);
+  const dpr = window.devicePixelRatio || 1;
+  const rect = c.getBoundingClientRect();
+  c.width = rect.width * dpr; c.height = rect.height * dpr;
+  c.style.width = rect.width + 'px'; c.style.height = rect.height + 'px';
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  return { ctx, w: rect.width, h: rect.height };
+}
+function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r);}
+
+// Shared components
+function drawMenuBar(ctx,w,alpha) {
+  ctx.fillStyle = `rgba(0,0,0,${0.5*alpha})`;
+  ctx.fillRect(0,0,w,26);
+  ctx.strokeStyle = `rgba(255,255,255,${0.05*alpha})`;
+  ctx.beginPath();ctx.moveTo(0,26);ctx.lineTo(w,26);ctx.stroke();
+  ctx.font='600 14px -apple-system,sans-serif';
+  ctx.fillStyle=`rgba(255,255,255,${0.7*alpha})`;ctx.fillText('',14,18);
+  ctx.font='600 12px -apple-system,sans-serif';
+  ctx.fillStyle=`rgba(255,255,255,${0.7*alpha})`;ctx.fillText('Chirag Dodia',36,17);
+  const items=['About','Skills','Projects','Experience','Contact'];
+  let mx=140;
+  ctx.font='400 12px -apple-system,sans-serif';
+  items.forEach(item=>{ctx.fillStyle=`rgba(255,255,255,${0.4*alpha})`;ctx.fillText(item,mx,17);mx+=ctx.measureText(item).width+18;});
+  ctx.textAlign='right';ctx.fillStyle=`rgba(255,255,255,${0.35*alpha})`;ctx.font='400 11px -apple-system,sans-serif';
+  ctx.fillText('Wed Mar 11  11:42 PM',w-14,17);ctx.textAlign='left';
+}
+
+function drawDock(ctx,w,h,alpha,time) {
+  const icons=[
+    {s:'i',c:'#88aaff'},{s:'<>',c:'#ff9f0a'},{s:'{}',c:'#30d158'},{s:'◷',c:'#bf5af2'},{s:'@',c:'#ff453a'}
+  ];
+  const dockW=icons.length*52+24, dockX=(w-dockW)/2, dockY=h-65;
+  ctx.fillStyle=`rgba(255,255,255,${0.04*alpha})`;
+  roundRect(ctx,dockX,dockY,dockW,52,14);ctx.fill();
+  ctx.strokeStyle=`rgba(255,255,255,${0.08*alpha})`;ctx.lineWidth=1;
+  roundRect(ctx,dockX,dockY,dockW,52,14);ctx.stroke();
+  icons.forEach((icon,i)=>{
+    const ix=dockX+12+i*52+16,iy=dockY+26;
+    const b=Math.sin(time*3+i*0.8)*2;
+    const ig=ctx.createRadialGradient(ix,iy+b,0,ix,iy+b,16);
+    ig.addColorStop(0,icon.c+'40');ig.addColorStop(1,icon.c+'10');
+    ctx.fillStyle=ig;roundRect(ctx,ix-16,iy-16+b,32,32,8);ctx.fill();
+    ctx.strokeStyle=icon.c+'50';ctx.lineWidth=1;roundRect(ctx,ix-16,iy-16+b,32,32,8);ctx.stroke();
+    ctx.font='13px -apple-system,sans-serif';ctx.fillStyle=icon.c+Math.round(alpha*255).toString(16).padStart(2,'0');
+    ctx.textAlign='center';ctx.fillText(icon.s,ix,iy+5+b);
+  });
+  ctx.textAlign='left';
+}
+
+function drawAurora(ctx,w,h,alpha,time) {
+  for(let wave=0;wave<3;wave++){
+    ctx.beginPath();ctx.moveTo(0,h*0.35);
+    for(let x=0;x<=w;x+=4){
+      const y=h*0.3+Math.sin(x*0.003+time*0.3+wave*1.5)*50+Math.sin(x*0.007+time*0.5)*25+wave*35;
+      ctx.lineTo(x,y);
+    }
+    ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.closePath();
+    const colors=['rgba(80,60,180,'+0.05*alpha+')','rgba(60,120,200,'+0.04*alpha+')','rgba(100,60,160,'+0.03*alpha+')'];
+    ctx.fillStyle=colors[wave];ctx.fill();
+  }
+}
+
+function drawWindowChrome(ctx,x,y,w,title,active) {
+  ctx.fillStyle=active?'rgba(255,255,255,0.07)':'rgba(255,255,255,0.03)';
+  roundRect(ctx,x,y,w,28,[8,8,0,0]);ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(x,y+28);ctx.lineTo(x+w,y+28);ctx.stroke();
+  const dots=['#ff5f57','#febc2e','#28c840'];
+  dots.forEach((c,i)=>{ctx.fillStyle=active?c:'rgba(255,255,255,0.1)';ctx.beginPath();ctx.arc(x+16+i*18,y+14,5,0,Math.PI*2);ctx.fill();});
+  ctx.font='500 11px -apple-system,sans-serif';ctx.fillStyle=active?'rgba(255,255,255,0.6)':'rgba(255,255,255,0.25)';
+  ctx.textAlign='center';ctx.fillText(title,x+w/2,y+18);ctx.textAlign='left';
+}
+
+function drawGlassPanel(ctx,x,y,w,h,r,opts={}) {
+  const {bg='rgba(255,255,255,0.04)',border='rgba(255,255,255,0.1)',glow=null}=opts;
+  if(glow){const g=ctx.createRadialGradient(x+w/2,y+h/2,0,x+w/2,y+h/2,Math.max(w,h));g.addColorStop(0,glow);g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(x-40,y-40,w+80,h+80);}
+  ctx.fillStyle='rgba(0,0,0,0.2)';roundRect(ctx,x+2,y+3,w,h,r);ctx.fill();
+  ctx.fillStyle=bg;roundRect(ctx,x,y,w,h,r);ctx.fill();
+  ctx.strokeStyle=border;ctx.lineWidth=1;roundRect(ctx,x,y,w,h,r);ctx.stroke();
+  const hl=ctx.createLinearGradient(x,y,x+w,y);hl.addColorStop(0,'transparent');hl.addColorStop(0.3,'rgba(255,255,255,0.05)');hl.addColorStop(0.7,'rgba(255,255,255,0.05)');hl.addColorStop(1,'transparent');
+  ctx.fillStyle=hl;ctx.fillRect(x+r,y,w-r*2,1);
+}
+
+function desktopBg(ctx,w,h,time) {
+  const bg=ctx.createLinearGradient(0,0,0,h);bg.addColorStop(0,'#0a0a1a');bg.addColorStop(0.5,'#0e0e20');bg.addColorStop(1,'#080812');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+  drawAurora(ctx,w,h,1,time);
+  drawMenuBar(ctx,w,1);
+  drawDock(ctx,w,h,1,time);
+}
+
+// ====== SCENE 1: Vision Pro Hero ======
+function renderHero(t) {
+  const {ctx,w,h}=initCanvas('cv-hero');
+  const time=t*0.001;
+  const bg=ctx.createRadialGradient(w/2,h/2,0,w/2,h/2,w*0.7);
+  bg.addColorStop(0,'#0e0e18');bg.addColorStop(1,'#050508');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+
+  // Ambient particles
+  for(let i=0;i<60;i++){
+    const dx=((i*8761+31)%1000)/1000*w;
+    const dy=((i*5347+71)%1000)/1000*h;
+    const pulse=Math.sin(time+i*0.4)*0.3+0.5;
+    const drift=Math.sin(time*0.5+i*0.3)*15;
+    ctx.fillStyle=`rgba(180,180,220,${pulse*0.06})`;
+    ctx.beginPath();ctx.arc(dx+drift,dy,1.2,0,Math.PI*2);ctx.fill();
+  }
+
+  const cx=w/2,cy=h/2;
+
+  // Back panels (out of focus)
+  const backPanels=[
+    {x:cx-360,y:cy-50,w:160,h:120,label:'Experience'},
+    {x:cx+240,y:cy-70,w:150,h:110,label:'Contact'},
+    {x:cx-280,y:cy+60,w:140,h:100,label:'Education'},
+  ];
+  backPanels.forEach((p,i)=>{
+    const float=Math.sin(time*0.35+i*2)*8;
+    ctx.globalAlpha=0.35;
+    ctx.fillStyle='rgba(255,255,255,0.02)';roundRect(ctx,p.x,p.y+float,p.w,p.h,16);ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=1;roundRect(ctx,p.x,p.y+float,p.w,p.h,16);ctx.stroke();
+    ctx.font='400 10px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.12)';ctx.textAlign='center';
+    ctx.fillText(p.label,p.x+p.w/2,p.y+float+p.h/2+4);
+    ctx.globalAlpha=1;
+  });
+
+  // Mid panels
+  const mf1=Math.sin(time*0.45)*5;
+  drawGlassPanel(ctx,cx-280,cy-35+mf1,190,150,16,{bg:'rgba(255,255,255,0.03)',border:'rgba(255,255,255,0.06)'});
+  ctx.font='500 12px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.45)';ctx.textAlign='center';
+  ctx.fillText('Skills',cx-185,cy-8+mf1);
+  const miniSkills=['TypeScript','Swift','React Native','Python','Docker'];
+  ctx.font='400 10px -apple-system,sans-serif';
+  miniSkills.forEach((s,i)=>{
+    ctx.fillStyle='rgba(255,255,255,0.03)';roundRect(ctx,cx-265,cy+8+i*22+mf1,160,16,8);ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,0.25)';ctx.fillText(s,cx-185,cy+20+i*22+mf1);
+  });
+
+  const mf2=Math.sin(time*0.45+1.5)*6;
+  drawGlassPanel(ctx,cx+110,cy-25+mf2,190,140,16,{bg:'rgba(255,255,255,0.03)',border:'rgba(255,255,255,0.06)'});
+  ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='500 12px -apple-system,sans-serif';
+  ctx.fillText('Projects',cx+205,cy+2+mf2);
+  ['WC26 Fantasy','FinSight','Stock Trading'].forEach((p,i)=>{
+    ctx.fillStyle='rgba(255,255,255,0.03)';roundRect(ctx,cx+126,cy+16+i*30+mf2,158,22,6);ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.05)';roundRect(ctx,cx+126,cy+16+i*30+mf2,158,22,6);ctx.stroke();
+    ctx.font='400 10px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.3)';
+    ctx.fillText(p,cx+205,cy+30+i*30+mf2);
+  });
+
+  // Hero center panel
+  const hf=Math.sin(time*0.5+0.5)*3;
+  const hpw=340,hph=190,hpx=cx-hpw/2,hpy=cy-hph/2-15+hf;
+  drawGlassPanel(ctx,hpx,hpy,hpw,hph,22,{bg:'rgba(255,255,255,0.05)',border:'rgba(255,255,255,0.12)',glow:'rgba(180,180,255,0.025)'});
+  const ig=ctx.createRadialGradient(cx,hpy+hph/2,0,cx,hpy+hph/2,200);
+  ig.addColorStop(0,'rgba(255,255,255,0.015)');ig.addColorStop(1,'transparent');
+  ctx.fillStyle=ig;roundRect(ctx,hpx,hpy,hpw,hph,22);ctx.fill();
+
+  ctx.font='600 36px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.92)';
+  ctx.fillText('Chirag Dodia',cx,hpy+72);
+  ctx.font='300 15px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';
+  ctx.fillText('Mobile & Full-Stack Engineer',cx,hpy+98);
+  ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fillRect(cx-35,hpy+112,70,1);
+  ctx.font='400 12px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.22)';
+  ctx.fillText('Indiana University Bloomington',cx,hpy+134);
+  ctx.fillText('MS Computer Science • GPA 3.65',cx,hpy+154);
+  ctx.textAlign='left';
+
+  // Scroll indicator
+  const sy=Math.sin(time*2)*5;
+  ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1.5;
+  roundRect(ctx,cx-10,h-50+sy,20,32,10);ctx.stroke();
+  ctx.fillStyle='rgba(255,255,255,0.4)';ctx.beginPath();ctx.arc(cx,h-40+sy,2,0,Math.PI*2);ctx.fill();
+  ctx.font='400 10px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.15)';
+  ctx.textAlign='center';ctx.fillText('Scroll to explore',cx,h-12);ctx.textAlign='left';
+}
+
+// ====== SCENE 2: Transition ======
+function renderTransition(t) {
+  const {ctx,w,h}=initCanvas('cv-transition');
+  const time=t*0.001;
+  // Mid-transition: void becoming desktop
+  const bg=ctx.createLinearGradient(0,0,0,h);
+  bg.addColorStop(0,'#0a0a16');bg.addColorStop(0.4,'#0c0c1c');bg.addColorStop(1,'#080814');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+
+  // Fading aurora (partially visible)
+  drawAurora(ctx,w,h,0.5,time);
+
+  // Particles dispersing outward
+  for(let i=0;i<30;i++){
+    const angle=(i/30)*Math.PI*2;
+    const dist=80+Math.sin(time+i)*40;
+    const px=w/2+Math.cos(angle+time*0.2)*dist;
+    const py=h/2+Math.sin(angle+time*0.2)*dist*0.6;
+    const alpha=Math.sin(time+i*0.5)*0.2+0.2;
+    ctx.fillStyle=`rgba(150,160,255,${alpha})`;
+    ctx.beginPath();ctx.arc(px,py,1.5,0,Math.PI*2);ctx.fill();
+  }
+
+  // Menu bar fading in (partial alpha)
+  drawMenuBar(ctx,w,0.6);
+
+  // Central glass panel shrinking/morphing
+  const cx=w/2,cy=h/2;
+  const shrink=Math.sin(time*0.3)*10;
+  drawGlassPanel(ctx,cx-120+shrink,cy-60,240-shrink*2,120,16,{
+    bg:'rgba(255,255,255,0.04)',border:'rgba(255,255,255,0.08)'
+  });
+  ctx.font='500 14px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.5)';
+  ctx.textAlign='center';ctx.fillText('Booting desktop...',cx,cy-10);
+  // Progress bar
+  const progress=(Math.sin(time*0.8)*0.5+0.5);
+  ctx.fillStyle='rgba(255,255,255,0.04)';roundRect(ctx,cx-80,cy+10,160,4,2);ctx.fill();
+  ctx.fillStyle='rgba(100,160,255,0.4)';roundRect(ctx,cx-80,cy+10,160*progress,4,2);ctx.fill();
+  ctx.font='400 10px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.2)';
+  ctx.fillText('Loading workspace...',cx,cy+32);
+  ctx.textAlign='left';
+
+  // Dock rising (partial)
+  drawDock(ctx,w,h,0.4,time);
+
+  // Ghost windows forming
+  ctx.globalAlpha=0.15;
+  drawGlassPanel(ctx,w*0.1,80,200,120,8,{bg:'rgba(255,255,255,0.02)',border:'rgba(255,255,255,0.04)'});
+  drawGlassPanel(ctx,w*0.6,100,220,130,8,{bg:'rgba(255,255,255,0.02)',border:'rgba(255,255,255,0.04)'});
+  ctx.globalAlpha=1;
+}
+
+// ====== SCENE 3: About ======
+function renderAbout(t) {
+  const {ctx,w,h}=initCanvas('cv-about');
+  const time=t*0.001;
+  desktopBg(ctx,w,h,time);
+
+  // About.app window
+  const ww=500,wh=320,wx=(w-ww)/2,wy=50;
+  const float=Math.sin(time*0.5)*3;
+  drawGlassPanel(ctx,wx,wy+float,ww,wh,10,{bg:'rgba(18,18,32,0.92)',border:'rgba(100,160,255,0.12)',glow:'rgba(100,100,255,0.02)'});
+  drawWindowChrome(ctx,wx,wy+float,ww,'About.app — Chirag Dodia',true);
+
+  // Profile placeholder
+  ctx.fillStyle='rgba(100,160,255,0.08)';
+  ctx.beginPath();ctx.arc(wx+60,wy+float+90,30,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='rgba(100,160,255,0.15)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.arc(wx+60,wy+float+90,30,0,Math.PI*2);ctx.stroke();
+  ctx.font='22px -apple-system,sans-serif';ctx.fillStyle='rgba(100,160,255,0.3)';
+  ctx.textAlign='center';ctx.fillText('👤',wx+60,wy+float+98);ctx.textAlign='left';
+
+  // Info
+  ctx.font='600 18px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.85)';
+  ctx.fillText('Chirag Dodia',wx+110,wy+float+72);
+  ctx.font='400 12px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';
+  ctx.fillText('Mobile & Full-Stack Engineer',wx+110,wy+float+92);
+  ctx.fillText('Bloomington, IN • MS CS @ Indiana University',wx+110,wy+float+110);
+
+  // Separator
+  ctx.fillStyle='rgba(255,255,255,0.06)';ctx.fillRect(wx+20,wy+float+135,ww-40,1);
+
+  // Bio text mock
+  const lines=[
+    'Engineer with 2+ years building cross-platform mobile',
+    'apps and full-stack systems. From fintech in Bangalore',
+    'to ML-powered research tools at Indiana University.',
+    '',
+    'I build things that work beautifully on every device.',
+  ];
+  ctx.font='400 13px -apple-system,sans-serif';
+  lines.forEach((line,i)=>{
+    ctx.fillStyle=line?'rgba(255,255,255,0.5)':'transparent';
+    ctx.fillText(line,wx+24,wy+float+160+i*22);
+  });
+
+  // Education badges
+  const edy=wy+float+275;
+  ['🎓 Indiana University — MS CS (3.65 GPA)','🎓 University of Mumbai — BE IT (8.83 CGPA)'].forEach((ed,i)=>{
+    ctx.fillStyle='rgba(100,160,255,0.06)';roundRect(ctx,wx+20,edy+i*28,ww-40,22,6);ctx.fill();
+    ctx.font='400 11px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';
+    ctx.fillText(ed,wx+32,edy+i*28+15);
+  });
+}
+
+// ====== SCENE 4: Skills ======
+function renderSkills(t) {
+  const {ctx,w,h}=initCanvas('cv-skills');
+  const time=t*0.001;
+  desktopBg(ctx,w,h,time);
+
+  const ww=580,wh=320,wx=(w-ww)/2,wy=45;
+  const float=Math.sin(time*0.5)*3;
+  drawGlassPanel(ctx,wx,wy+float,ww,wh,10,{bg:'rgba(18,18,32,0.92)',border:'rgba(255,159,10,0.12)'});
+  drawWindowChrome(ctx,wx,wy+float,ww,'Skills.app — Tech Stack',true);
+
+  // Category tabs
+  const cats=['Mobile','Backend','AI / ML','DevOps'];
+  const catColors=['#61dafb','#68a063','#ff6b6b','#2496ed'];
+  cats.forEach((cat,i)=>{
+    const tx=wx+20+i*140;
+    ctx.fillStyle=i===0?catColors[i]+'20':'rgba(255,255,255,0.03)';
+    roundRect(ctx,tx,wy+float+38,125,24,6);ctx.fill();
+    ctx.strokeStyle=i===0?catColors[i]+'40':'rgba(255,255,255,0.06)';ctx.lineWidth=1;
+    roundRect(ctx,tx,wy+float+38,125,24,6);ctx.stroke();
+    ctx.font=i===0?'600 11px -apple-system,sans-serif':'400 11px -apple-system,sans-serif';
+    ctx.fillStyle=i===0?catColors[i]:'rgba(255,255,255,0.35)';
+    ctx.textAlign='center';ctx.fillText(cat,tx+62.5,wy+float+54);
+  });
+  ctx.textAlign='left';
+
+  // Skill cards grid (showing Mobile)
+  const skills=[
+    {name:'React Native',sub:'Cross-platform',color:'#61dafb'},
+    {name:'SwiftUI',sub:'iOS Native',color:'#f05138'},
+    {name:'Kotlin',sub:'Android Native',color:'#7f52ff'},
+    {name:'Flutter',sub:'Cross-platform',color:'#02569b'},
+    {name:'TypeScript',sub:'Language',color:'#3178c6'},
+    {name:'Redux',sub:'State Mgmt',color:'#764abc'},
+  ];
+  skills.forEach((sk,i)=>{
+    const col=i%3,row=Math.floor(i/3);
+    const bx=wx+20+col*186,by=wy+float+76+row*100;
+    const hover=i===0?Math.sin(time*2)*2:0;
+    ctx.fillStyle=sk.color+'0a';roundRect(ctx,bx,by+hover,175,85,8);ctx.fill();
+    ctx.strokeStyle=i===0?sk.color+'30':sk.color+'15';ctx.lineWidth=1;
+    roundRect(ctx,bx,by+hover,175,85,8);ctx.stroke();
+
+    // Icon placeholder
+    ctx.fillStyle=sk.color+'25';roundRect(ctx,bx+12,by+hover+14,36,36,8);ctx.fill();
+    ctx.font='16px -apple-system,sans-serif';ctx.fillStyle=sk.color+'80';
+    ctx.textAlign='center';ctx.fillText('</>',bx+30,by+hover+38);ctx.textAlign='left';
+
+    ctx.font='600 13px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.75)';
+    ctx.fillText(sk.name,bx+58,by+hover+30);
+    ctx.font='400 10px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.3)';
+    ctx.fillText(sk.sub,bx+58,by+hover+46);
+
+    // Proficiency bar
+    ctx.fillStyle='rgba(255,255,255,0.04)';roundRect(ctx,bx+58,by+hover+56,105,4,2);ctx.fill();
+    ctx.fillStyle=sk.color+'50';roundRect(ctx,bx+58,by+hover+56,105*(0.7+i*0.04),4,2);ctx.fill();
+  });
+}
+
+// ====== SCENE 5: Projects ======
+function renderProjects(t) {
+  const {ctx,w,h}=initCanvas('cv-projects');
+  const time=t*0.001;
+  desktopBg(ctx,w,h,time);
+
+  const ww=600,wh=330,wx=(w-ww)/2,wy=42;
+  const float=Math.sin(time*0.5)*3;
+  drawGlassPanel(ctx,wx,wy+float,ww,wh,10,{bg:'rgba(18,18,32,0.92)',border:'rgba(48,209,88,0.12)'});
+  drawWindowChrome(ctx,wx,wy+float,ww,'Projects.app — Featured Work',true);
+
+  const projects=[
+    {name:'WC26 Fantasy Friends',desc:'Full-Stack Fantasy Football',tags:['TypeScript','FastAPI','PostgreSQL','AI'],color:'#30d158',featured:true},
+    {name:'FinSight',desc:'Agentic Financial Intelligence',tags:['LangGraph','Ollama','Python'],color:'#ff9f0a',featured:false},
+    {name:'Stock Trading Platform',desc:'Native iOS Trading App',tags:['SwiftUI','Finnhub','Alamofire'],color:'#f05138',featured:false},
+  ];
+
+  projects.forEach((proj,i)=>{
+    const py=wy+float+42+i*95;
+    const isHover=i===0;
+    ctx.fillStyle=isHover?proj.color+'0c':'rgba(255,255,255,0.02)';
+    roundRect(ctx,wx+16,py,ww-32,82,8);ctx.fill();
+    ctx.strokeStyle=isHover?proj.color+'25':'rgba(255,255,255,0.04)';ctx.lineWidth=1;
+    roundRect(ctx,wx+16,py,ww-32,82,8);ctx.stroke();
+
+    if(proj.featured){
+      ctx.fillStyle=proj.color+'20';roundRect(ctx,wx+28,py+10,55,16,8);ctx.fill();
+      ctx.font='600 8px -apple-system,sans-serif';ctx.fillStyle=proj.color;
+      ctx.fillText('FEATURED',wx+36,py+21);
+    }
+
+    ctx.font='600 14px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.8)';
+    ctx.fillText(proj.name,wx+28,py+(proj.featured?42:26));
+    ctx.font='400 11px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.35)';
+    ctx.fillText(proj.desc,wx+28,py+(proj.featured?58:42));
+
+    // Tags
+    let tx=wx+28;
+    ctx.font='400 9px -apple-system,sans-serif';
+    proj.tags.forEach(tag=>{
+      const tw=ctx.measureText(tag).width+12;
+      ctx.fillStyle=proj.color+'0c';roundRect(ctx,tx,py+(proj.featured?64:48),tw,18,9);ctx.fill();
+      ctx.strokeStyle=proj.color+'20';roundRect(ctx,tx,py+(proj.featured?64:48),tw,18,9);ctx.stroke();
+      ctx.fillStyle=proj.color+'90';ctx.fillText(tag,tx+6,py+(proj.featured?76:60));
+      tx+=tw+6;
+    });
+
+    // GitHub icon
+    ctx.font='400 10px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.2)';
+    ctx.textAlign='right';ctx.fillText('GitHub →',wx+ww-28,py+26);ctx.textAlign='left';
+  });
+}
+
+// ====== SCENE 6: Experience ======
+function renderExperience(t) {
+  const {ctx,w,h}=initCanvas('cv-experience');
+  const time=t*0.001;
+  desktopBg(ctx,w,h,time);
+
+  const ww=580,wh=320,wx=(w-ww)/2,wy=45;
+  const float=Math.sin(time*0.5)*3;
+  drawGlassPanel(ctx,wx,wy+float,ww,wh,10,{bg:'rgba(18,18,32,0.92)',border:'rgba(191,90,242,0.12)'});
+  drawWindowChrome(ctx,wx,wy+float,ww,'Experience.app — Career Timeline',true);
+
+  // Horizontal timeline
+  const tlY=wy+float+70;
+  ctx.strokeStyle='rgba(191,90,242,0.15)';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(wx+50,tlY);ctx.lineTo(wx+ww-50,tlY);ctx.stroke();
+
+  const jobs=[
+    {title:'React Native Dev',company:'DotMinds LLP',date:'Mar–Sep 2022',loc:'Mumbai',x:wx+100},
+    {title:'Mobile App Dev',company:'L&T Financial',date:'Jul 2023–Jun 2024',loc:'Bangalore',x:wx+290},
+    {title:'Software Engineer',company:'Indiana University',date:'Nov 2025–Present',loc:'Bloomington',x:wx+480},
+  ];
+
+  jobs.forEach((job,i)=>{
+    const pulse=Math.sin(time*2+i)*0.15+0.85;
+    // Node
+    ctx.fillStyle=`rgba(191,90,242,${0.8*pulse})`;
+    ctx.beginPath();ctx.arc(job.x,tlY,6,0,Math.PI*2);ctx.fill();
+    const glow=ctx.createRadialGradient(job.x,tlY,0,job.x,tlY,20);
+    glow.addColorStop(0,'rgba(191,90,242,0.15)');glow.addColorStop(1,'transparent');
+    ctx.fillStyle=glow;ctx.beginPath();ctx.arc(job.x,tlY,20,0,Math.PI*2);ctx.fill();
+
+    // Card below
+    const cy=tlY+20;
+    ctx.fillStyle='rgba(191,90,242,0.05)';roundRect(ctx,job.x-70,cy,140,95,8);ctx.fill();
+    ctx.strokeStyle='rgba(191,90,242,0.1)';ctx.lineWidth=1;roundRect(ctx,job.x-70,cy,140,95,8);ctx.stroke();
+    // Connector line
+    ctx.strokeStyle='rgba(191,90,242,0.15)';ctx.beginPath();ctx.moveTo(job.x,tlY+6);ctx.lineTo(job.x,cy);ctx.stroke();
+
+    ctx.textAlign='center';
+    ctx.font='600 11px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.75)';
+    ctx.fillText(job.title,job.x,cy+18);
+    ctx.font='400 10px -apple-system,sans-serif';ctx.fillStyle='rgba(191,90,242,0.6)';
+    ctx.fillText(job.company,job.x,cy+34);
+    ctx.fillStyle='rgba(255,255,255,0.3)';ctx.fillText(job.date,job.x,cy+52);
+    ctx.fillStyle='rgba(255,255,255,0.2)';ctx.fillText(job.loc,job.x,cy+68);
+
+    // Active indicator for current
+    if(i===2){
+      ctx.fillStyle='rgba(48,209,88,0.15)';roundRect(ctx,job.x-22,cy+76,44,14,7);ctx.fill();
+      ctx.font='600 8px -apple-system,sans-serif';ctx.fillStyle='rgba(48,209,88,0.7)';
+      ctx.fillText('CURRENT',job.x,cy+86);
+    }
+    ctx.textAlign='left';
+  });
+
+  // Education row at bottom
+  ctx.fillStyle='rgba(255,255,255,0.03)';roundRect(ctx,wx+16,wy+float+260,ww-32,45,8);ctx.fill();
+  ctx.font='500 11px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';
+  ctx.fillText('🎓 Indiana University Bloomington — MS Computer Science (2024–2026)',wx+28,wy+float+280);
+  ctx.fillText('🎓 University of Mumbai — BE Information Technology (2020–2023)',wx+28,wy+float+298);
+}
+
+// ====== SCENE 7: Contact ======
+function renderContact(t) {
+  const {ctx,w,h}=initCanvas('cv-contact');
+  const time=t*0.001;
+  desktopBg(ctx,w,h,time);
+
+  const ww=420,wh=320,wx=(w-ww)/2,wy=45;
+  const float=Math.sin(time*0.5)*3;
+  drawGlassPanel(ctx,wx,wy+float,ww,wh,10,{bg:'rgba(18,18,32,0.92)',border:'rgba(255,69,58,0.12)'});
+  drawWindowChrome(ctx,wx,wy+float,ww,'Contact.app — Get in Touch',true);
+
+  // Form fields
+  const fields=[{label:'Your Name',ph:'John Doe'},{label:'Email',ph:'john@example.com'},{label:'Message',ph:'Hey Chirag, I'd love to connect...', tall:true}];
+  let fy=wy+float+46;
+  fields.forEach(f=>{
+    ctx.font='500 10px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';
+    ctx.fillText(f.label,wx+24,fy+12);
+    const fh=f.tall?70:32;
+    ctx.fillStyle='rgba(255,255,255,0.03)';roundRect(ctx,wx+24,fy+18,ww-48,fh,6);ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;roundRect(ctx,wx+24,fy+18,ww-48,fh,6);ctx.stroke();
+    ctx.font='400 12px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.15)';
+    ctx.fillText(f.ph,wx+36,fy+18+(f.tall?22:20));
+    fy+=fh+30;
+  });
+
+  // Send button
+  ctx.fillStyle='rgba(100,160,255,0.15)';roundRect(ctx,wx+24,fy,ww-48,36,8);ctx.fill();
+  ctx.strokeStyle='rgba(100,160,255,0.3)';ctx.lineWidth=1;roundRect(ctx,wx+24,fy,ww-48,36,8);ctx.stroke();
+  ctx.font='600 13px -apple-system,sans-serif';ctx.fillStyle='rgba(100,160,255,0.8)';
+  ctx.textAlign='center';ctx.fillText('Send Message ↗',wx+ww/2,fy+22);ctx.textAlign='left';
+
+  // Mailto fallback
+  ctx.font='400 11px -apple-system,sans-serif';ctx.fillStyle='rgba(255,255,255,0.2)';
+  ctx.textAlign='center';ctx.fillText('or email directly: chiragdodia36@gmail.com',wx+ww/2,fy+56);ctx.textAlign='left';
+}
+
+// ====== SELECTION ======
+function confirmDesign() {
+  document.getElementById('confirm').classList.add('confirmed');
+  if(window.__brainstormHelper){
+    window.__brainstormHelper.recordEvent({type:'click',choice:'hybrid-approved',text:'Approved hybrid Vision Pro + macOS Desktop'});
+  }
+}
+
+// ====== ANIMATE ======
+function loop(t) {
+  renderHero(t);
+  renderTransition(t);
+  renderAbout(t);
+  renderSkills(t);
+  renderProjects(t);
+  renderExperience(t);
+  renderContact(t);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

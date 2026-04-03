@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Approach Concepts</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; overflow-x: hidden; }
+
+  .header {
+    text-align: center; padding: 40px 20px 20px;
+    position: sticky; top: 0; z-index: 100;
+    background: linear-gradient(to bottom, #0a0a0f 80%, transparent);
+  }
+  .header h1 { font-size: 28px; font-weight: 600; margin-bottom: 8px; }
+  .header p { color: #666; font-size: 14px; }
+
+  .approach {
+    max-width: 1100px; margin: 40px auto; padding: 0 20px;
+    cursor: pointer;
+  }
+  .approach-label {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+  }
+  .approach-letter {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px; flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  .approach:nth-child(1) .approach-letter { background: rgba(100,149,237,0.2); color: #6495ed; border: 2px solid #6495ed; }
+  .approach:nth-child(2) .approach-letter { background: rgba(255,255,255,0.1); color: #fff; border: 2px solid #555; }
+  .approach:nth-child(3) .approach-letter { background: rgba(0,255,136,0.15); color: #0f8; border: 2px solid #0f8; }
+
+  .approach-title { font-size: 20px; font-weight: 600; }
+  .approach-subtitle { color: #888; font-size: 13px; margin-top: 2px; }
+  .rec-badge {
+    font-size: 10px; background: rgba(255,215,0,0.15); color: #ffd700;
+    padding: 3px 8px; border-radius: 10px; font-weight: 600; letter-spacing: 0.5px;
+  }
+
+  /* MOCKUP VIEWPORT */
+  .mockup-viewport {
+    background: #111118; border-radius: 12px; overflow: hidden;
+    border: 1px solid #222; position: relative;
+    height: 500px;
+  }
+  .mockup-viewport canvas { width: 100%; height: 100%; display: block; }
+
+  /* SCROLL SCENES STRIP */
+  .scenes-strip {
+    display: flex; gap: 12px; margin-top: 16px; overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  .scenes-strip::-webkit-scrollbar { height: 4px; }
+  .scenes-strip::-webkit-scrollbar-track { background: #111; }
+  .scenes-strip::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+  .scene-thumb {
+    flex-shrink: 0; width: 160px; border-radius: 8px; overflow: hidden;
+    border: 1px solid #222; background: #111118;
+  }
+  .scene-thumb canvas { width: 160px; height: 100px; display: block; }
+  .scene-thumb .scene-label {
+    padding: 8px 10px; font-size: 11px; color: #888;
+    border-top: 1px solid #222;
+  }
+  .scene-thumb .scene-label strong { color: #ccc; display: block; margin-bottom: 2px; }
+
+  .select-bar {
+    margin-top: 20px; text-align: center; padding: 16px;
+    background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid #222;
+    transition: all 0.3s;
+  }
+  .select-bar:hover { border-color: #444; background: rgba(255,255,255,0.06); }
+  .select-btn {
+    background: none; border: 2px solid #555; color: #ccc; padding: 10px 32px;
+    border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 500;
+    transition: all 0.3s;
+  }
+  .select-btn:hover { border-color: #6495ed; color: #6495ed; }
+  .selected .select-btn { border-color: #6495ed; color: #6495ed; background: rgba(100,149,237,0.1); }
+
+  .divider {
+    max-width: 1100px; margin: 60px auto; height: 1px;
+    background: linear-gradient(to right, transparent, #333, transparent);
+  }
+
+  .footer-note {
+    text-align: center; padding: 40px 20px 60px; color: #555; font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Choose Your Portfolio Concept</h1>
+  <p>Each mockup shows the hero section + scroll scene thumbnails. Click to select.</p>
+</div>
+
+<!-- APPROACH A: THE ORBIT -->
+<div class="approach" id="approach-a">
+  <div class="approach-label">
+    <div class="approach-letter">A</div>
+    <div>
+      <div class="approach-title">The Orbit <span class="rec-badge">RECOMMENDED</span></div>
+      <div class="approach-subtitle">Career as a journey through space — camera orbits between floating stations</div>
+    </div>
+  </div>
+  <div class="mockup-viewport">
+    <canvas id="canvas-a"></canvas>
+  </div>
+  <div class="scenes-strip" id="strip-a"></div>
+  <div class="select-bar" onclick="selectApproach('a')">
+    <button class="select-btn">Select The Orbit</button>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- APPROACH B: THE LAYERS -->
+<div class="approach" id="approach-b">
+  <div class="approach-label">
+    <div class="approach-letter">B</div>
+    <div>
+      <div class="approach-title">The Layers</div>
+      <div class="approach-subtitle">Architectural glass planes in 3D depth — Apple product reveal meets developer portfolio</div>
+    </div>
+  </div>
+  <div class="mockup-viewport">
+    <canvas id="canvas-b"></canvas>
+  </div>
+  <div class="scenes-strip" id="strip-b"></div>
+  <div class="select-bar" onclick="selectApproach('b')">
+    <button class="select-btn">Select The Layers</button>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- APPROACH C: THE MACHINE -->
+<div class="approach" id="approach-c">
+  <div class="approach-label">
+    <div class="approach-letter">C</div>
+    <div>
+      <div class="approach-title">The Machine</div>
+      <div class="approach-subtitle">Portfolio as a living circuit — particles flow, nodes light up as you scroll</div>
+    </div>
+  </div>
+  <div class="mockup-viewport">
+    <canvas id="canvas-c"></canvas>
+  </div>
+  <div class="scenes-strip" id="strip-c"></div>
+  <div class="select-bar" onclick="selectApproach('c')">
+    <button class="select-btn">Select The Machine</button>
+  </div>
+</div>
+
+<div class="footer-note">Click "Select" on the approach you like, then return to the terminal.</div>
+
+<script>
+// ============ UTILITY ============
+function setupCanvas(id) {
+  const c = document.getElementById(id);
+  const dpr = window.devicePixelRatio || 1;
+  const rect = c.parentElement.getBoundingClientRect();
+  c.width = rect.width * dpr;
+  c.height = rect.height * dpr;
+  c.style.width = rect.width + 'px';
+  c.style.height = rect.height + 'px';
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return { ctx, w: rect.width, h: rect.height };
+}
+
+function setupThumb(canvas, w, h) {
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return ctx;
+}
+
+// ============ APPROACH A: THE ORBIT ============
+function drawOrbitHero() {
+  const { ctx, w, h } = setupCanvas('canvas-a');
+  const time = Date.now() * 0.001;
+
+  // Deep space background
+  ctx.fillStyle = '#06060e';
+  ctx.fillRect(0, 0, w, h);
+
+  // Stars
+  const starSeed = 42;
+  for (let i = 0; i < 200; i++) {
+    const sx = ((starSeed * i * 7919) % 10000) / 10000 * w;
+    const sy = ((starSeed * i * 6271) % 10000) / 10000 * h;
+    const brightness = ((starSeed * i * 3571) % 10000) / 10000;
+    const twinkle = Math.sin(time * 2 + i) * 0.3 + 0.7;
+    ctx.fillStyle = `rgba(200, 210, 255, ${brightness * 0.6 * twinkle})`;
+    ctx.beginPath();
+    ctx.arc(sx, sy, brightness * 1.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Nebula glow
+  const grad = ctx.createRadialGradient(w * 0.4, h * 0.3, 0, w * 0.4, h * 0.3, 300);
+  grad.addColorStop(0, 'rgba(100, 149, 237, 0.08)');
+  grad.addColorStop(1, 'transparent');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
+
+  const grad2 = ctx.createRadialGradient(w * 0.7, h * 0.6, 0, w * 0.7, h * 0.6, 250);
+  grad2.addColorStop(0, 'rgba(180, 130, 255, 0.05)');
+  grad2.addColorStop(1, 'transparent');
+  ctx.fillStyle = grad2;
+  ctx.fillRect(0, 0, w, h);
+
+  // Central orb
+  const cx = w / 2, cy = h / 2;
+  const orbGrad = ctx.createRadialGradient(cx, cy - 10, 5, cx, cy, 60);
+  orbGrad.addColorStop(0, 'rgba(200, 220, 255, 0.9)');
+  orbGrad.addColorStop(0.3, 'rgba(100, 149, 237, 0.5)');
+  orbGrad.addColorStop(0.7, 'rgba(80, 100, 200, 0.15)');
+  orbGrad.addColorStop(1, 'transparent');
+  ctx.fillStyle = orbGrad;
+  ctx.beginPath();
+  ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Inner bright core
+  ctx.fillStyle = 'rgba(220, 230, 255, 0.8)';
+  ctx.beginPath();
+  ctx.arc(cx, cy, 12, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Orbit rings
+  ctx.save();
+  ctx.translate(cx, cy);
+  for (let ring = 0; ring < 3; ring++) {
+    const radius = 100 + ring * 55;
+    const tilt = 0.3 + ring * 0.1;
+    ctx.save();
+    ctx.scale(1, tilt);
+    ctx.rotate(ring * 0.4 + time * 0.2);
+    ctx.strokeStyle = `rgba(100, 149, 237, ${0.15 - ring * 0.03})`;
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 8]);
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Orbiting dots (tech icons placeholder)
+    for (let d = 0; d < 3 + ring; d++) {
+      const angle = (d / (3 + ring)) * Math.PI * 2 + time * (0.5 - ring * 0.1);
+      const dx = Math.cos(angle) * radius;
+      const dy = Math.sin(angle) * radius;
+      ctx.fillStyle = ring === 0 ? 'rgba(100, 200, 255, 0.8)' : ring === 1 ? 'rgba(180, 130, 255, 0.7)' : 'rgba(100, 255, 180, 0.6)';
+      ctx.beginPath();
+      ctx.arc(dx, dy, 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+  ctx.restore();
+
+  // Name text assembling from particles
+  ctx.font = '600 42px -apple-system, BlinkMacSystemFont, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+  ctx.fillText('CHIRAG DODIA', cx, cy - 130);
+
+  ctx.font = '300 16px -apple-system, BlinkMacSystemFont, sans-serif';
+  ctx.fillStyle = 'rgba(150, 160, 180, 0.8)';
+  ctx.letterSpacing = '4px';
+  ctx.fillText('M O B I L E   &   F U L L - S T A C K   E N G I N E E R', cx, cy - 100);
+
+  // Floating particles
+  for (let i = 0; i < 30; i++) {
+    const px = ((i * 9973 + 137) % 1000) / 1000 * w;
+    const py = ((i * 7127 + 293) % 1000) / 1000 * h;
+    const drift = Math.sin(time + i * 0.5) * 20;
+    const alpha = Math.sin(time * 0.8 + i) * 0.3 + 0.3;
+    ctx.fillStyle = `rgba(100, 149, 237, ${alpha})`;
+    ctx.beginPath();
+    ctx.arc(px + drift, py, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Scroll indicator
+  const scrollY = Math.sin(time * 2) * 5;
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(cx - 10, h - 50 + scrollY, 20, 32, 10);
+  ctx.stroke();
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.beginPath();
+  ctx.arc(cx, h - 40 + scrollY, 2, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+// ============ APPROACH B: THE LAYERS ============
+function drawLayersHero() {
+  const { ctx, w, h } = setupCanvas('canvas-b');
+  const time = Date.now() * 0.001;
+
+  // Dark background
+  ctx.fillStyle = '#08080e';
+  ctx.fillRect(0, 0, w, h);
+
+  // Subtle grid
+  ctx.strokeStyle = 'rgba(255,255,255,0.02)';
+  ctx.lineWidth = 1;
+  for (let x = 0; x < w; x += 60) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+  }
+  for (let y = 0; y < h; y += 60) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+  }
+
+  const cx = w / 2, cy = h / 2;
+
+  // Glass panels stacked in perspective
+  const panels = [
+    { x: cx - 180, y: cy + 60, w: 360, h: 200, z: 0, color: 'rgba(255,255,255,0.04)', label: 'CONTACT', border: 'rgba(255,255,255,0.08)' },
+    { x: cx - 160, y: cy + 20, w: 340, h: 180, z: 1, color: 'rgba(255,255,255,0.05)', label: 'EXPERIENCE', border: 'rgba(255,255,255,0.1)' },
+    { x: cx - 140, y: cy - 20, w: 320, h: 160, z: 2, color: 'rgba(255,255,255,0.06)', label: 'PROJECTS', border: 'rgba(255,255,255,0.12)' },
+    { x: cx - 120, y: cy - 60, w: 300, h: 140, z: 3, color: 'rgba(255,255,255,0.07)', label: 'SKILLS', border: 'rgba(255,255,255,0.15)' },
+  ];
+
+  // Draw panels from back to front
+  panels.forEach((p, i) => {
+    const float = Math.sin(time * 0.8 + i * 0.5) * 3;
+    const py = p.y + float;
+
+    // Shadow
+    ctx.fillStyle = 'rgba(0,0,0,0.3)';
+    ctx.beginPath();
+    ctx.roundRect(p.x + 4, py + 4, p.w, p.h, 8);
+    ctx.fill();
+
+    // Glass panel
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.roundRect(p.x, py, p.w, p.h, 8);
+    ctx.fill();
+
+    // Border
+    ctx.strokeStyle = p.border;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.roundRect(p.x, py, p.w, p.h, 8);
+    ctx.stroke();
+
+    // Light reflection line at top
+    const refGrad = ctx.createLinearGradient(p.x, py, p.x + p.w, py);
+    refGrad.addColorStop(0, 'transparent');
+    refGrad.addColorStop(0.3, 'rgba(255,255,255,0.08)');
+    refGrad.addColorStop(0.7, 'rgba(255,255,255,0.08)');
+    refGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = refGrad;
+    ctx.fillRect(p.x + 20, py, p.w - 40, 1);
+
+    // Label
+    ctx.font = '500 11px -apple-system, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.25)';
+    ctx.textAlign = 'center';
+    ctx.fillText(p.label, cx, py + 24);
+
+    // Mock content lines
+    for (let line = 0; line < 3; line++) {
+      ctx.fillStyle = `rgba(255,255,255,${0.06 - line * 0.015})`;
+      const lw = p.w * (0.6 - line * 0.1);
+      ctx.beginPath();
+      ctx.roundRect(cx - lw/2, py + 40 + line * 16, lw, 6, 3);
+      ctx.fill();
+    }
+  });
+
+  // Hero panel (front, larger)
+  const heroFloat = Math.sin(time * 0.6) * 4;
+  const hx = cx - 200, hy = cy - 140 + heroFloat, hw = 400, hh = 120;
+
+  // Glow behind hero panel
+  const glow = ctx.createRadialGradient(cx, hy + hh/2, 0, cx, hy + hh/2, 250);
+  glow.addColorStop(0, 'rgba(255,255,255,0.04)');
+  glow.addColorStop(1, 'transparent');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, w, h);
+
+  ctx.fillStyle = 'rgba(255,255,255,0.08)';
+  ctx.beginPath();
+  ctx.roundRect(hx, hy, hw, hh, 12);
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.roundRect(hx, hy, hw, hh, 12);
+  ctx.stroke();
+
+  // Hero content
+  ctx.font = '600 28px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.textAlign = 'center';
+  ctx.fillText('CHIRAG DODIA', cx, hy + 45);
+
+  ctx.font = '300 13px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.fillText('Mobile & Full-Stack Engineer', cx, hy + 70);
+
+  // Small decorative line
+  ctx.fillStyle = 'rgba(255,255,255,0.15)';
+  ctx.fillRect(cx - 30, hy + 82, 60, 1);
+
+  // Scroll indicator
+  const scrollY = Math.sin(time * 2) * 5;
+  ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(cx - 10, h - 50 + scrollY, 20, 32, 10);
+  ctx.stroke();
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.beginPath();
+  ctx.arc(cx, h - 40 + scrollY, 2, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+// ============ APPROACH C: THE MACHINE ============
+function drawMachineHero() {
+  const { ctx, w, h } = setupCanvas('canvas-c');
+  const time = Date.now() * 0.001;
+
+  // Dark background
+  ctx.fillStyle = '#050510';
+  ctx.fillRect(0, 0, w, h);
+
+  const cx = w / 2, cy = h / 2;
+
+  // Circuit grid
+  ctx.strokeStyle = 'rgba(0, 255, 136, 0.04)';
+  ctx.lineWidth = 1;
+  const gridSize = 40;
+  for (let x = 0; x < w; x += gridSize) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+  }
+  for (let y = 0; y < h; y += gridSize) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+  }
+
+  // Circuit nodes
+  const nodes = [];
+  for (let i = 0; i < 25; i++) {
+    const nx = ((i * 8731 + 53) % 100) / 100 * (w - 200) + 100;
+    const ny = ((i * 6173 + 97) % 100) / 100 * (h - 100) + 50;
+    nodes.push({ x: nx, y: ny });
+  }
+
+  // Connections between nearby nodes
+  ctx.lineWidth = 1;
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+      if (dist < 200) {
+        const alpha = (1 - dist / 200) * 0.15;
+        ctx.strokeStyle = `rgba(0, 255, 136, ${alpha})`;
+        ctx.beginPath();
+        // Right-angle connections (circuit style)
+        const midX = (nodes[i].x + nodes[j].x) / 2;
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(midX, nodes[i].y);
+        ctx.lineTo(midX, nodes[j].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+
+  // Flowing particles along connections
+  for (let i = 0; i < 15; i++) {
+    const t = ((time * 0.3 + i * 0.37) % 1);
+    const ni = i % nodes.length;
+    const nj = (i * 3 + 7) % nodes.length;
+    if (ni === nj) continue;
+    const px = nodes[ni].x + (nodes[nj].x - nodes[ni].x) * t;
+    const py = nodes[ni].y + (nodes[nj].y - nodes[ni].y) * t;
+
+    const glow = ctx.createRadialGradient(px, py, 0, px, py, 12);
+    glow.addColorStop(0, 'rgba(0, 255, 136, 0.6)');
+    glow.addColorStop(1, 'transparent');
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(px, py, 12, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = 'rgba(0, 255, 136, 0.9)';
+    ctx.beginPath();
+    ctx.arc(px, py, 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Nodes
+  nodes.forEach((n, i) => {
+    const pulse = Math.sin(time * 2 + i) * 0.3 + 0.7;
+    // Glow
+    const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, 15);
+    glow.addColorStop(0, `rgba(0, 255, 136, ${0.15 * pulse})`);
+    glow.addColorStop(1, 'transparent');
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, 15, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Node dot
+    ctx.fillStyle = `rgba(0, 255, 136, ${0.4 * pulse})`;
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, 3, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // Central hub
+  const hubGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 120);
+  hubGlow.addColorStop(0, 'rgba(0, 255, 136, 0.1)');
+  hubGlow.addColorStop(0.5, 'rgba(0, 255, 136, 0.03)');
+  hubGlow.addColorStop(1, 'transparent');
+  ctx.fillStyle = hubGlow;
+  ctx.beginPath();
+  ctx.arc(cx, cy, 120, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Hexagon hub
+  ctx.strokeStyle = 'rgba(0, 255, 136, 0.3)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  for (let i = 0; i < 6; i++) {
+    const angle = (i / 6) * Math.PI * 2 - Math.PI / 6 + time * 0.1;
+    const hx = cx + Math.cos(angle) * 50;
+    const hy = cy + Math.sin(angle) * 50;
+    if (i === 0) ctx.moveTo(hx, hy);
+    else ctx.lineTo(hx, hy);
+  }
+  ctx.closePath();
+  ctx.stroke();
+
+  // Name
+  ctx.font = '600 38px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+  ctx.textAlign = 'center';
+  ctx.fillText('CHIRAG DODIA', cx, cy - 80);
+
+  ctx.font = '300 14px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(0, 255, 136, 0.6)';
+  ctx.fillText('> initializing portfolio...', cx, cy - 55);
+
+  // Status bar at bottom
+  ctx.fillStyle = 'rgba(0, 255, 136, 0.05)';
+  ctx.fillRect(0, h - 30, w, 30);
+  ctx.strokeStyle = 'rgba(0, 255, 136, 0.1)';
+  ctx.beginPath(); ctx.moveTo(0, h - 30); ctx.lineTo(w, h - 30); ctx.stroke();
+
+  ctx.font = '400 10px monospace';
+  ctx.fillStyle = 'rgba(0, 255, 136, 0.3)';
+  ctx.textAlign = 'left';
+  ctx.fillText('SYS > modules: 12 loaded | nodes: active | scroll to power', 20, h - 12);
+}
+
+// ============ SCENE THUMBNAILS ============
+function createThumbs() {
+  const scenes = {
+    a: [
+      { label: 'Hero', desc: 'Particles form name', draw: drawThumbOrbitHero },
+      { label: 'About', desc: 'Glowing orb reveals', draw: drawThumbOrbitAbout },
+      { label: 'Skills', desc: '3D constellations', draw: drawThumbOrbitSkills },
+      { label: 'Projects', desc: 'Floating stations', draw: drawThumbOrbitProjects },
+      { label: 'Experience', desc: 'Space timeline', draw: drawThumbOrbitExp },
+      { label: 'Contact', desc: 'Quiet platform', draw: drawThumbOrbitContact },
+    ],
+    b: [
+      { label: 'Hero', desc: 'Glass plane tilts', draw: drawThumbLayerHero },
+      { label: 'About', desc: 'Panel slides in', draw: drawThumbLayerAbout },
+      { label: 'Skills', desc: 'Cards fan out', draw: drawThumbLayerSkills },
+      { label: 'Projects', desc: 'Z-depth cards', draw: drawThumbLayerProjects },
+      { label: 'Experience', desc: 'Unstacking cards', draw: drawThumbLayerExp },
+      { label: 'Contact', desc: 'Glass form', draw: drawThumbLayerContact },
+    ],
+    c: [
+      { label: 'Hero', desc: 'Machine awakens', draw: drawThumbMachineHero },
+      { label: 'About', desc: 'Particle stream', draw: drawThumbMachineAbout },
+      { label: 'Skills', desc: 'Neural graph', draw: drawThumbMachineSkills },
+      { label: 'Projects', desc: 'Machine modules', draw: drawThumbMachineProjects },
+      { label: 'Experience', desc: 'Data pipeline', draw: drawThumbMachineExp },
+      { label: 'Contact', desc: 'Output terminal', draw: drawThumbMachineContact },
+    ]
+  };
+
+  Object.keys(scenes).forEach(key => {
+    const strip = document.getElementById('strip-' + key);
+    scenes[key].forEach(s => {
+      const div = document.createElement('div');
+      div.className = 'scene-thumb';
+      const canvas = document.createElement('canvas');
+      div.appendChild(canvas);
+      const labelDiv = document.createElement('div');
+      labelDiv.className = 'scene-label';
+      labelDiv.innerHTML = '<strong>' + s.label + '</strong>' + s.desc;
+      div.appendChild(labelDiv);
+      strip.appendChild(div);
+      const ctx = setupThumb(canvas, 160, 100);
+      s.draw(ctx, 160, 100);
+    });
+  });
+}
+
+// ---- Orbit Thumbs ----
+function drawThumbOrbitHero(ctx, w, h) {
+  ctx.fillStyle = '#06060e'; ctx.fillRect(0,0,w,h);
+  drawStarsBg(ctx,w,h,30);
+  ctx.fillStyle='rgba(100,149,237,0.5)'; ctx.beginPath(); ctx.arc(w/2,h/2+10,8,0,Math.PI*2); ctx.fill();
+  ctx.font='600 10px sans-serif'; ctx.fillStyle='rgba(255,255,255,0.8)'; ctx.textAlign='center'; ctx.fillText('CHIRAG',w/2,h/2-15);
+}
+function drawThumbOrbitAbout(ctx, w, h) {
+  ctx.fillStyle = '#06060e'; ctx.fillRect(0,0,w,h);
+  drawStarsBg(ctx,w,h,20);
+  const g = ctx.createRadialGradient(w/2,h/2,0,w/2,h/2,30);
+  g.addColorStop(0,'rgba(100,149,237,0.4)'); g.addColorStop(1,'transparent');
+  ctx.fillStyle=g; ctx.beginPath(); ctx.arc(w/2,h/2,30,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle='rgba(100,149,237,0.2)'; ctx.lineWidth=0.5; ctx.setLineDash([2,4]);
+  ctx.beginPath(); ctx.arc(w/2,h/2,40,0,Math.PI*2); ctx.stroke(); ctx.setLineDash([]);
+}
+function drawThumbOrbitSkills(ctx, w, h) {
+  ctx.fillStyle = '#06060e'; ctx.fillRect(0,0,w,h);
+  drawStarsBg(ctx,w,h,15);
+  const colors = ['#6495ed','#b482ff','#64ffaa','#ffaa64'];
+  for(let i=0;i<12;i++){const a=i/12*Math.PI*2;const r=25+Math.random()*15;ctx.fillStyle=colors[i%4];ctx.beginPath();ctx.arc(w/2+Math.cos(a)*r,h/2+Math.sin(a)*r,3,0,Math.PI*2);ctx.fill();}
+}
+function drawThumbOrbitProjects(ctx, w, h) {
+  ctx.fillStyle='#06060e';ctx.fillRect(0,0,w,h);drawStarsBg(ctx,w,h,10);
+  for(let i=0;i<3;i++){ctx.fillStyle='rgba(100,149,237,0.1)';ctx.beginPath();ctx.roundRect(20+i*42,h/2-15+i*5,35,30,4);ctx.fill();ctx.strokeStyle='rgba(100,149,237,0.2)';ctx.beginPath();ctx.roundRect(20+i*42,h/2-15+i*5,35,30,4);ctx.stroke();}
+}
+function drawThumbOrbitExp(ctx, w, h) {
+  ctx.fillStyle='#06060e';ctx.fillRect(0,0,w,h);drawStarsBg(ctx,w,h,10);
+  ctx.strokeStyle='rgba(100,149,237,0.3)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(20,h/2);ctx.bezierCurveTo(60,h/2-20,100,h/2+20,140,h/2);ctx.stroke();
+  [30,80,130].forEach(x=>{ctx.fillStyle='rgba(100,200,255,0.7)';ctx.beginPath();ctx.arc(x,h/2+(x===80?-10:x===130?5:0),3,0,Math.PI*2);ctx.fill();});
+}
+function drawThumbOrbitContact(ctx, w, h) {
+  ctx.fillStyle='#06060e';ctx.fillRect(0,0,w,h);drawStarsBg(ctx,w,h,10);
+  ctx.fillStyle='rgba(100,149,237,0.08)';ctx.beginPath();ctx.roundRect(w/2-35,h/2-20,70,40,6);ctx.fill();
+  ctx.strokeStyle='rgba(100,149,237,0.2)';ctx.beginPath();ctx.roundRect(w/2-35,h/2-20,70,40,6);ctx.stroke();
+  ctx.font='8px sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';ctx.textAlign='center';ctx.fillText('Get in touch',w/2,h/2+3);
+}
+
+// ---- Layers Thumbs ----
+function drawThumbLayerHero(ctx, w, h) {
+  ctx.fillStyle='#08080e';ctx.fillRect(0,0,w,h);drawGridBg(ctx,w,h);
+  ctx.fillStyle='rgba(255,255,255,0.06)';ctx.beginPath();ctx.roundRect(w/2-40,h/2-18,80,36,4);ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.beginPath();ctx.roundRect(w/2-40,h/2-18,80,36,4);ctx.stroke();
+  ctx.font='600 9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.8)';ctx.textAlign='center';ctx.fillText('CHIRAG',w/2,h/2+4);
+}
+function drawThumbLayerAbout(ctx, w, h) {
+  ctx.fillStyle='#08080e';ctx.fillRect(0,0,w,h);drawGridBg(ctx,w,h);
+  ctx.fillStyle='rgba(255,255,255,0.05)';ctx.beginPath();ctx.roundRect(30,25,100,55,4);ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.1)';ctx.beginPath();ctx.roundRect(30,25,100,55,4);ctx.stroke();
+  for(let i=0;i<3;i++){ctx.fillStyle=`rgba(255,255,255,${0.06-i*0.015})`;ctx.fillRect(40,38+i*12,80-i*15,4);}
+}
+function drawThumbLayerSkills(ctx, w, h) {
+  ctx.fillStyle='#08080e';ctx.fillRect(0,0,w,h);drawGridBg(ctx,w,h);
+  for(let i=0;i<4;i++){const x=15+i*35;const y=h/2-10+i*3;ctx.fillStyle='rgba(255,255,255,0.05)';ctx.beginPath();ctx.roundRect(x,y,30,25,3);ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.1)';ctx.beginPath();ctx.roundRect(x,y,30,25,3);ctx.stroke();}
+}
+function drawThumbLayerProjects(ctx, w, h) {
+  ctx.fillStyle='#08080e';ctx.fillRect(0,0,w,h);drawGridBg(ctx,w,h);
+  for(let i=0;i<3;i++){const s=0.8+i*0.1;ctx.fillStyle=`rgba(255,255,255,${0.04+i*0.02})`;ctx.beginPath();ctx.roundRect(w/2-30+i*5,h/2-20-i*8,60,40,4);ctx.fill();ctx.strokeStyle=`rgba(255,255,255,${0.08+i*0.04})`;ctx.beginPath();ctx.roundRect(w/2-30+i*5,h/2-20-i*8,60,40,4);ctx.stroke();}
+}
+function drawThumbLayerExp(ctx, w, h) {
+  ctx.fillStyle='#08080e';ctx.fillRect(0,0,w,h);drawGridBg(ctx,w,h);
+  for(let i=0;i<3;i++){ctx.fillStyle=`rgba(255,255,255,${0.04+i*0.015})`;ctx.beginPath();ctx.roundRect(w/2-25,15+i*25,50,20,3);ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.1)';ctx.beginPath();ctx.roundRect(w/2-25,15+i*25,50,20,3);ctx.stroke();}
+  ctx.strokeStyle='rgba(255,255,255,0.08)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(w/2,35);ctx.lineTo(w/2,80);ctx.stroke();
+}
+function drawThumbLayerContact(ctx, w, h) {
+  ctx.fillStyle='#08080e';ctx.fillRect(0,0,w,h);drawGridBg(ctx,w,h);
+  ctx.fillStyle='rgba(255,255,255,0.06)';ctx.beginPath();ctx.roundRect(w/2-35,h/2-18,70,36,6);ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.beginPath();ctx.roundRect(w/2-35,h/2-18,70,36,6);ctx.stroke();
+  ctx.fillStyle='rgba(255,255,255,0.04)';ctx.fillRect(w/2-25,h/2-6,50,6);ctx.fillRect(w/2-25,h/2+4,50,6);
+}
+
+// ---- Machine Thumbs ----
+function drawThumbMachineHero(ctx, w, h) {
+  ctx.fillStyle='#050510';ctx.fillRect(0,0,w,h);
+  drawCircuitBg(ctx,w,h);
+  ctx.font='600 9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.8)';ctx.textAlign='center';ctx.fillText('CHIRAG',w/2,h/2-5);
+  ctx.font='7px monospace';ctx.fillStyle='rgba(0,255,136,0.5)';ctx.fillText('> init...',w/2,h/2+8);
+}
+function drawThumbMachineAbout(ctx, w, h) {
+  ctx.fillStyle='#050510';ctx.fillRect(0,0,w,h);drawCircuitBg(ctx,w,h);
+  ctx.strokeStyle='rgba(0,255,136,0.3)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(10,h/2);ctx.lineTo(60,h/2);ctx.stroke();
+  for(let i=0;i<5;i++){const x=15+i*10;ctx.fillStyle='rgba(0,255,136,0.6)';ctx.beginPath();ctx.arc(x,h/2,1.5,0,Math.PI*2);ctx.fill();}
+  ctx.fillStyle='rgba(0,255,136,0.05)';ctx.beginPath();ctx.roundRect(70,h/2-15,75,30,4);ctx.fill();
+}
+function drawThumbMachineSkills(ctx, w, h) {
+  ctx.fillStyle='#050510';ctx.fillRect(0,0,w,h);drawCircuitBg(ctx,w,h);
+  const pts=[[w/2,h/2],[w/2-25,h/2-20],[w/2+25,h/2-20],[w/2-30,h/2+15],[w/2+30,h/2+15],[w/2,h/2-30]];
+  pts.forEach((p,i)=>{pts.forEach((q,j)=>{if(j>i&&Math.random()>0.4){ctx.strokeStyle='rgba(0,255,136,0.1)';ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();}});ctx.fillStyle='rgba(0,255,136,0.5)';ctx.beginPath();ctx.arc(p[0],p[1],3,0,Math.PI*2);ctx.fill();});
+}
+function drawThumbMachineProjects(ctx, w, h) {
+  ctx.fillStyle='#050510';ctx.fillRect(0,0,w,h);drawCircuitBg(ctx,w,h);
+  for(let i=0;i<3;i++){ctx.strokeStyle='rgba(0,255,136,0.2)';ctx.beginPath();ctx.roundRect(15+i*45,h/2-15,38,30,4);ctx.stroke();ctx.fillStyle='rgba(0,255,136,0.3)';ctx.beginPath();ctx.arc(15+i*45+19,h/2,3,0,Math.PI*2);ctx.fill();}
+}
+function drawThumbMachineExp(ctx, w, h) {
+  ctx.fillStyle='#050510';ctx.fillRect(0,0,w,h);drawCircuitBg(ctx,w,h);
+  ctx.strokeStyle='rgba(0,255,136,0.3)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(15,h/2);ctx.lineTo(145,h/2);ctx.stroke();
+  [30,80,130].forEach(x=>{ctx.fillStyle='rgba(0,255,136,0.6)';ctx.beginPath();ctx.arc(x,h/2,4,0,Math.PI*2);ctx.fill();});
+}
+function drawThumbMachineContact(ctx, w, h) {
+  ctx.fillStyle='#050510';ctx.fillRect(0,0,w,h);drawCircuitBg(ctx,w,h);
+  ctx.strokeStyle='rgba(0,255,136,0.3)';ctx.beginPath();ctx.roundRect(w/2-30,h/2-15,60,30,4);ctx.stroke();
+  ctx.font='7px monospace';ctx.fillStyle='rgba(0,255,136,0.5)';ctx.textAlign='center';ctx.fillText('> output_',w/2,h/2+3);
+}
+
+// ---- Helpers ----
+function drawStarsBg(ctx, w, h, count) {
+  for(let i=0;i<count;i++){const x=((i*7919+13)%1000)/1000*w;const y=((i*6271+37)%1000)/1000*h;ctx.fillStyle=`rgba(200,210,255,${Math.random()*0.4+0.1})`;ctx.beginPath();ctx.arc(x,y,0.8,0,Math.PI*2);ctx.fill();}
+}
+function drawGridBg(ctx, w, h) {
+  ctx.strokeStyle='rgba(255,255,255,0.02)';ctx.lineWidth=0.5;
+  for(let x=0;x<w;x+=15){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
+  for(let y=0;y<h;y+=15){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+}
+function drawCircuitBg(ctx, w, h) {
+  ctx.strokeStyle='rgba(0,255,136,0.03)';ctx.lineWidth=0.5;
+  for(let x=0;x<w;x+=12){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
+  for(let y=0;y<h;y+=12){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+  for(let i=0;i<8;i++){const x=Math.random()*w;const y=Math.random()*h;ctx.fillStyle='rgba(0,255,136,0.15)';ctx.beginPath();ctx.arc(x,y,1.5,0,Math.PI*2);ctx.fill();}
+}
+
+// ============ SELECTION ============
+let selected = null;
+function selectApproach(choice) {
+  selected = choice;
+  document.querySelectorAll('.select-bar').forEach(b => b.classList.remove('selected'));
+  document.querySelector('#approach-' + choice + ' .select-bar').classList.add('selected');
+
+  // Record event
+  if (window.__brainstormHelper) {
+    window.__brainstormHelper.recordEvent({ type: 'click', choice: choice, text: 'Approach ' + choice.toUpperCase() });
+  }
+}
+
+// ============ ANIMATION LOOP ============
+function animate() {
+  drawOrbitHero();
+  drawLayersHero();
+  drawMachineHero();
+  requestAnimationFrame(animate);
+}
+
+// Init
+createThumbs();
+animate();
+</script>
+</body>
+</html>

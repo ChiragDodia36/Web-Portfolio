@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: chirag-portfolio
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        sync: false
+      - key: NEXT_PUBLIC_EMAILJS_SERVICE_ID
+        sync: false
+      - key: NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
