@@ -110,8 +110,8 @@ export function Terminal({ isOpen, onClose }: TerminalProps) {
   const [lines, setLines] = useState<TerminalLine[]>([
     {
       type: "output",
-      content: `Welcome to Chirag's AI Terminal
-Type 'help' for commands, or ask me anything naturally.
+      content: `Cypher online. Give me a corpse... or just ask me anything. I have all the details.
+Type 'help' for local commands, or ask for tactical intel naturally.
 `,
     },
   ]);
@@ -242,9 +242,9 @@ Type 'help' for commands, or ask me anything naturally.
             <div className="w-3 h-3 rounded-full bg-[#28c840]" />
           </div>
           <span className="flex-1 text-center text-[11px] text-white/30 font-medium">
-            chirag@portfolio — AI Terminal
+            chirag@portfolio — CYPHER Information Broker
           </span>
-          <span className="text-[9px] text-[#bf5af2]/60 font-medium tracking-wide">✦ AI</span>
+          <span className="text-[9px] text-[#bf5af2]/60 font-medium tracking-wide">✦ CYPHER</span>
         </div>
 
         {/* Terminal body */}
@@ -271,7 +271,7 @@ Type 'help' for commands, or ask me anything naturally.
                 <div className="mt-1 mb-2">
                   <div className="flex items-center gap-1.5 mb-1">
                     <span className="text-[#bf5af2]">✦</span>
-                    <span className="text-[10px] text-[#bf5af2]/60 tracking-widest uppercase">ai</span>
+                    <span className="text-[10px] text-[#bf5af2]/60 tracking-widest uppercase">CYPHER</span>
                   </div>
                   <pre className="text-[#c8aaff]/80 whitespace-pre-wrap pl-3 border-l border-[#bf5af2]/20">
                     {line.content}
@@ -289,7 +289,7 @@ Type 'help' for commands, or ask me anything naturally.
             <div className="mb-1 mt-1">
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="text-[#bf5af2]">✦</span>
-                <span className="text-[10px] text-[#bf5af2]/60 tracking-widest uppercase">ai</span>
+                <span className="text-[10px] text-[#bf5af2]/60 tracking-widest uppercase">CYPHER</span>
               </div>
               <div className="flex gap-1 pl-3">
                 {[0, 1, 2].map((i) => (

@@ -32,7 +32,7 @@ export function ObjectivesTracker() {
       style={{
         position: "fixed",
         bottom: 80,
-        right: 16,
+        left: 16,
         zIndex: 80,
         width: 220,
         background: "rgba(15,25,35,0.88)",
