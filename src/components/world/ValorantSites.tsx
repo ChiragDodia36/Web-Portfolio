@@ -12,7 +12,7 @@
  * Zone letters: SPAWN / A / B / C / D / E
  */
 
-import { useRef, useMemo, useState } from "react";
+import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
@@ -46,7 +46,6 @@ interface SiteProps {
 }
 
 function Site({ position, zoneIndex, activeZone, visited }: SiteProps) {
-  const [hovered, setHovered] = useState(false);
   const ringRef    = useRef<THREE.Mesh>(null);
   const fillRef    = useRef<THREE.Mesh>(null);
   const pillarRef  = useRef<THREE.Mesh>(null);
@@ -158,72 +157,54 @@ function Site({ position, zoneIndex, activeZone, visited }: SiteProps) {
   });
 
   const info = ZONE_INFO[zoneIndex];
+  const isActive = zoneIndex === activeZone;
 
   return (
     <group position={position}>
-      {/* Invisible hover target — large flat disc */}
-      <mesh
-        rotation={[-Math.PI / 2, 0, 0]}
-        onPointerEnter={(e) => { e.stopPropagation(); setHovered(true); }}
-        onPointerLeave={() => setHovered(false)}
+      {/* Always-visible zone label — floats above the pillar */}
+      <Html
+        center
+        position={[0, 7, 0]}
+        distanceFactor={22}
+        style={{ pointerEvents: "none", whiteSpace: "nowrap" }}
       >
-        <circleGeometry args={[5.5, 32]} />
-        <meshBasicMaterial transparent opacity={0} depthWrite={false} />
-      </mesh>
-
-      {/* 3D hover label */}
-      {hovered && (
-        <Html
-          center
-          position={[0, 2.5, 0]}
-          distanceFactor={14}
-          style={{ pointerEvents: "none" }}
-        >
+        <div style={{
+          background: isActive ? "rgba(255,70,84,0.15)" : "rgba(10, 15, 22, 0.88)",
+          border: `1px solid ${isActive ? "rgba(255,70,84,0.9)" : "rgba(255,70,84,0.4)"}`,
+          borderTop: `3px solid ${isActive ? "#FF4654" : "rgba(255,70,84,0.55)"}`,
+          padding: "10px 18px",
+          minWidth: 160,
+          textAlign: "center",
+          backdropFilter: "blur(12px)",
+          boxShadow: isActive
+            ? "0 0 24px rgba(255,70,84,0.4), 0 4px 20px rgba(0,0,0,0.7)"
+            : "0 0 10px rgba(255,70,84,0.1), 0 4px 16px rgba(0,0,0,0.6)",
+          transition: "all 0.3s ease",
+        }}>
           <div style={{
-            background: "rgba(10, 15, 22, 0.92)",
-            border: "1px solid rgba(255,70,84,0.6)",
-            borderTop: "2px solid #FF4654",
-            padding: "8px 14px",
-            minWidth: 130,
-            textAlign: "center",
-            backdropFilter: "blur(12px)",
-            boxShadow: "0 0 16px rgba(255,70,84,0.25), 0 4px 16px rgba(0,0,0,0.6)",
+            fontSize: 18,
+            fontWeight: 800,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: isActive ? "#FF4654" : "rgba(255,70,84,0.85)",
+            fontFamily: "Rajdhani, system-ui, sans-serif",
+            lineHeight: 1,
+            marginBottom: 5,
           }}>
-            <div style={{
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: "#FF4654",
-              fontFamily: "Rajdhani, system-ui, sans-serif",
-              marginBottom: 3,
-            }}>
-              {info.name}
-            </div>
-            <div style={{
-              fontSize: 10,
-              letterSpacing: "0.08em",
-              color: "rgba(236,232,225,0.75)",
-              fontFamily: "Rajdhani, system-ui, sans-serif",
-              textTransform: "uppercase",
-            }}>
-              {info.desc}
-            </div>
-            {/* Small triangle pointer */}
-            <div style={{
-              position: "absolute",
-              bottom: -6,
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: 0,
-              height: 0,
-              borderLeft: "6px solid transparent",
-              borderRight: "6px solid transparent",
-              borderTop: "6px solid rgba(255,70,84,0.6)",
-            }} />
+            {info.name}
           </div>
-        </Html>
-      )}
+          <div style={{
+            fontSize: 12,
+            letterSpacing: "0.12em",
+            color: isActive ? "rgba(236,232,225,0.95)" : "rgba(236,232,225,0.6)",
+            fontFamily: "Rajdhani, system-ui, sans-serif",
+            textTransform: "uppercase",
+            fontWeight: 600,
+          }}>
+            {info.desc}
+          </div>
+        </div>
+      </Html>
 
       {/* Outer ring */}
       <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]} material={ringMat}>
