@@ -60,8 +60,14 @@ export function ValorantController() {
       zoneControl._setZone(zoneIndex);
     };
 
-    const onKeyDown = (e: KeyboardEvent) => { keys.current[e.code] = true; };
-    const onKeyUp   = (e: KeyboardEvent) => { keys.current[e.code] = false; };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (document.activeElement?.tagName === "INPUT" || document.activeElement?.tagName === "TEXTAREA") return;
+      keys.current[e.code] = true;
+    };
+    const onKeyUp = (e: KeyboardEvent) => {
+      if (document.activeElement?.tagName === "INPUT" || document.activeElement?.tagName === "TEXTAREA") return;
+      keys.current[e.code] = false;
+    };
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("keyup",   onKeyUp);
     return () => {
