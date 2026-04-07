@@ -175,8 +175,8 @@ function Site({ position, zoneIndex, activeZone, visited }: SiteProps) {
       {hovered && (
         <Html
           center
-          position={[0, zoneIndex === 0 ? 3 : 16, 0]}
-          distanceFactor={18}
+          position={[0, 2.5, 0]}
+          distanceFactor={14}
           style={{ pointerEvents: "none" }}
         >
           <div style={{

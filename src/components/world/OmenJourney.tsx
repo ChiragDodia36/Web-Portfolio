@@ -64,67 +64,16 @@ function Scene() {
   );
 }
 
-function ClickToPlayHint() {
-  const [locked, setLocked] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
-
-  useEffect(() => {
-    const onChange = () => {
-      const isLocked = !!document.pointerLockElement;
-      setLocked(isLocked);
-      if (isLocked) setDismissed(true);
-    };
-    document.addEventListener("pointerlockchange", onChange);
-    return () => document.removeEventListener("pointerlockchange", onChange);
-  }, []);
-
-  // Hide once locked — keep hidden for the session
-  if (locked || dismissed) return null;
-
-  return (
-    <div
-      style={{
-        position: "fixed",
-        bottom: 72,
-        left: "50%",
-        transform: "translateX(-50%)",
-        zIndex: 5,
-        background: "rgba(10, 15, 22, 0.9)",
-        border: "1px solid rgba(255,70,84,0.45)",
-        borderTop: "2px solid #FF4654",
-        padding: "7px 20px",
-        pointerEvents: "none",
-        backdropFilter: "blur(8px)",
-        boxShadow: "0 0 16px rgba(255,70,84,0.15)",
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
-      }}
-    >
-      <span style={{ color: "#FF4654", fontSize: 10, fontWeight: 700, letterSpacing: "0.18em" }}>
-        CLICK TO CONTROL
-      </span>
-      <span style={{ color: "rgba(236,232,225,0.35)", fontSize: 9, letterSpacing: "0.1em" }}>·</span>
-      <span style={{ color: "rgba(236,232,225,0.55)", fontSize: 9, letterSpacing: "0.12em" }}>
-        WASD MOVE · MOUSE AIM · ESC RELEASE
-      </span>
-    </div>
-  );
-}
-
 export function OmenJourney() {
   return (
-    <>
-      <Canvas
-        style={{ position: "fixed", inset: 0, zIndex: 0 }}
-        camera={{ position: [0, 10, 12], fov: 60 }}
-        gl={{ antialias: true, alpha: false }}
-        dpr={[1, 1.5]}
-      >
-        <color attach="background" args={["#0f1923"]} />
-        <Scene />
-      </Canvas>
-      <ClickToPlayHint />
-    </>
+    <Canvas
+      style={{ position: "fixed", inset: 0, zIndex: 0 }}
+      camera={{ position: [0, 10, 12], fov: 60 }}
+      gl={{ antialias: true, alpha: false }}
+      dpr={[1, 1.5]}
+    >
+      <color attach="background" args={["#0f1923"]} />
+      <Scene />
+    </Canvas>
   );
 }
