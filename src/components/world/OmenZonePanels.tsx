@@ -96,6 +96,14 @@ export function OmenZonePanels() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore if typing in an input or textarea
+      if (
+        document.activeElement?.tagName === "INPUT" ||
+        document.activeElement?.tagName === "TEXTAREA"
+      ) {
+        return;
+      }
+
       const key = e.key.toLowerCase();
       if (!MOVE_KEYS.has(key)) return;
       pressedKeys.current.add(key);
@@ -109,6 +117,14 @@ export function OmenZonePanels() {
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
+      // Ignore if typing in an input or textarea
+      if (
+        document.activeElement?.tagName === "INPUT" ||
+        document.activeElement?.tagName === "TEXTAREA"
+      ) {
+        return;
+      }
+
       const key = e.key.toLowerCase();
       pressedKeys.current.delete(key);
 
