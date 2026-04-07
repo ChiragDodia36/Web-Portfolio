@@ -37,7 +37,7 @@ export const projects: Project[] = [
     description:
       "Native iOS Trading App with real-time market data and portfolio tracking",
     tags: ["SwiftUI", "Finnhub", "Alamofire"],
-    github: "https://github.com/ChiragDodia36/Stock-Trading-Platform",
+    github: "https://github.com/ChiragDodia36/AppDev-IOS",
     color: "#f05138",
     category: "mobile",
     icon: "📈",
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     description:
       "Full-stack Netflix replica with user authentication and movie streaming",
     tags: ["React", "Node.js", "MongoDB", "TMDB API"],
-    github: "https://github.com/ChiragDodia36/Netflix-Clone",
+    github: "https://github.com/ChiragDodia36/Netflix_Clone",
     color: "#bf5af2",
     category: "web",
     icon: "🎬",

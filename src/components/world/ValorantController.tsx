@@ -94,8 +94,8 @@ export function ValorantController() {
       }
     } else {
       // --- WASD steering ---
-      if (k["KeyA"] || k["ArrowLeft"])  playerState.yaw -= TURN_SPEED;
-      if (k["KeyD"] || k["ArrowRight"]) playerState.yaw += TURN_SPEED;
+      if (k["KeyA"] || k["ArrowLeft"])  playerState.yaw += TURN_SPEED;
+      if (k["KeyD"] || k["ArrowRight"]) playerState.yaw -= TURN_SPEED;
 
       if (k["KeyW"] || k["ArrowUp"])   playerState.velocity += ACCEL;
       if (k["KeyS"] || k["ArrowDown"]) playerState.velocity -= ACCEL * 0.6;
