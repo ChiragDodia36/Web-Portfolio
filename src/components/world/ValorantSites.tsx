@@ -164,7 +164,7 @@ function Site({ position, zoneIndex, activeZone, visited }: SiteProps) {
       {/* Always-visible zone label — floats above the pillar */}
       <Html
         center
-        position={[0, 7, 0]}
+        position={[0, 1.5, 0]}
         distanceFactor={22}
         style={{ pointerEvents: "none", whiteSpace: "nowrap" }}
       >
