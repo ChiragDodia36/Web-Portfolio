@@ -22,14 +22,15 @@ export function DesktopLayout({ onResumeOpenChange }: DesktopLayoutProps) {
       case "terminal":
         setTerminalOpen((prev) => !prev);
         break;
-      case "resume": {
-        const next = !resumeOpen;
-        setResumeOpen(next);
-        onResumeOpenChange?.(next);
+      case "resume":
+        setResumeOpen((prev) => {
+          const next = !prev;
+          onResumeOpenChange?.(next);
+          return next;
+        });
         break;
-      }
     }
-  }, []);
+  }, [onResumeOpenChange]);
 
   // ⌘K for Spotlight
   useEffect(() => {
