@@ -21,6 +21,7 @@ const OmenJourney = dynamic(
 
 export default function Home() {
   const [phase, setPhase] = useState(missionState.phase);
+  const [resumeOpen, setResumeOpen] = useState(false);
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -50,13 +51,13 @@ export default function Home() {
       <OmenZonePanels />
 
       {/* Fixed HUD overlay */}
-      <DesktopLayout />
+      <DesktopLayout onResumeOpenChange={setResumeOpen} />
 
-      {/* Objectives tracker — visible from tutorial phase onward */}
-      {(phase === "tutorial" || phase === "active") && <ObjectivesTracker />}
+      {/* Objectives tracker — visible from tutorial phase onward, hidden when resume is open */}
+      {(phase === "tutorial" || phase === "active") && !resumeOpen && <ObjectivesTracker />}
 
-      {/* Live Intel — top-right minimap widget */}
-      {(phase === "tutorial" || phase === "active") && <LiveIntelWidget />}
+      {/* Live Intel — top-right minimap widget, hidden when resume is open */}
+      {(phase === "tutorial" || phase === "active") && !resumeOpen && <LiveIntelWidget />}
 
       {/* Tutorial — non-blocking tooltips */}
       <AnimatePresence>

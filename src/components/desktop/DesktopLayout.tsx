@@ -8,7 +8,11 @@ import { Terminal } from "./Terminal";
 import { ResumeViewer } from "./ResumeViewer";
 import { Spotlight } from "./Spotlight";
 
-export function DesktopLayout() {
+interface DesktopLayoutProps {
+  onResumeOpenChange?: (open: boolean) => void;
+}
+
+export function DesktopLayout({ onResumeOpenChange }: DesktopLayoutProps) {
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
   const [spotlightOpen, setSpotlightOpen] = useState(false);
@@ -18,9 +22,12 @@ export function DesktopLayout() {
       case "terminal":
         setTerminalOpen((prev) => !prev);
         break;
-      case "resume":
-        setResumeOpen((prev) => !prev);
+      case "resume": {
+        const next = !resumeOpen;
+        setResumeOpen(next);
+        onResumeOpenChange?.(next);
         break;
+      }
     }
   }, []);
 
@@ -61,7 +68,7 @@ export function DesktopLayout() {
 
         <AnimatePresence>
           {resumeOpen && (
-            <ResumeViewer key="resume" isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
+            <ResumeViewer key="resume" isOpen={resumeOpen} onClose={() => { setResumeOpen(false); onResumeOpenChange?.(false); }} />
           )}
         </AnimatePresence>
 
