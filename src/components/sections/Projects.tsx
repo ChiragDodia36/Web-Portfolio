@@ -55,7 +55,7 @@ function ProjectDetailModal({
             </div>
             <p style={{ fontSize: 13, color: "rgba(220,200,255,0.55)", lineHeight: 1.7 }}>{project.description}</p>
             <div>
-              <p style={{ fontSize: 9, letterSpacing: "0.2em", color: "rgba(155,100,221,0.4)", marginBottom: 8 }}>// TECH STACK</p>
+              <p style={{ fontSize: 9, letterSpacing: "0.2em", color: "rgba(155,100,221,0.4)", marginBottom: 8 }}>{"// TECH STACK"}</p>
               <div className="flex flex-wrap gap-1.5">
                 {project.tags.map((tag) => (
                   <span key={tag} style={{
@@ -149,7 +149,7 @@ export function Projects() {
                 {/* Main area */}
                 <div className="flex-1">
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10, paddingBottom: 8, borderBottom: "1px solid rgba(124,47,190,0.12)" }}>
-                    <span style={{ fontSize: 9, letterSpacing: "0.2em", color: "rgba(155,100,221,0.35)" }}>// INTEL //</span>
+                    <span style={{ fontSize: 9, letterSpacing: "0.2em", color: "rgba(155,100,221,0.35)" }}>{"// INTEL //"}</span>
                     <span style={{ fontSize: 10, letterSpacing: "0.1em", color: "#9D4EDD" }}>
                       {activeCategory === "all" ? "ALL MISSIONS" : projectCategories.find(c => c.id === activeCategory)?.label?.toUpperCase()}
                     </span>

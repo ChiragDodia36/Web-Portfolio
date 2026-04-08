@@ -45,6 +45,7 @@ function Shard({ position, rotation, scale, type, rotSpeed }: ShardProps) {
     const dz = camera.position.z - position[2];
     const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
     const prox = Math.max(0, 1 - dist / 15);
+    // eslint-disable-next-line react-hooks/immutability
     material.emissiveIntensity = 0.2 + prox * 0.8;
     material.opacity = 0.6 + prox * 0.35;
   });

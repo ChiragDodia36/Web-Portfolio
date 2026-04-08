@@ -85,7 +85,7 @@ export function Experience() {
           {/* Training Records (Education) */}
           <div style={{ borderTop: "1px solid rgba(124,47,190,0.15)", paddingTop: 14 }}>
             <h3 style={{ fontSize: 9, letterSpacing: "0.2em", color: "rgba(155,100,221,0.4)", marginBottom: 10, textTransform: "uppercase" }}>
-              // Training Records
+              {"// Training Records"}
             </h3>
             <div className="grid grid-cols-2 gap-3">
               {education.map((edu) => (

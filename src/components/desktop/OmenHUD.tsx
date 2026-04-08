@@ -89,7 +89,7 @@ export function OmenHUD() {
         >
           CHIRAG DODIA
         </button>
-        <span style={{ fontSize: 11, color: "rgba(255,70,84,0.35)" }}>//</span>
+        <span style={{ fontSize: 11, color: "rgba(255,70,84,0.35)" }}>{"//"}</span>
         <span style={{ fontSize: 11, fontWeight: 600, color: "#FF4654", letterSpacing: "0.1em" }}>
           PORTFOLIO
         </span>

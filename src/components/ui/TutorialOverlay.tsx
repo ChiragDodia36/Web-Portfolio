@@ -60,9 +60,11 @@ function WASDDiagram() {
 function TipCard({
   children,
   style,
+  onNext,
 }: {
   children: React.ReactNode;
   style?: React.CSSProperties;
+  onNext?: () => void;
 }) {
   return (
     <motion.div
@@ -95,6 +97,30 @@ function TipCard({
         }}
       />
       {children}
+      {onNext && (
+        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 14 }}>
+          <button
+            onClick={onNext}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 5,
+              background: "rgba(255,70,84,0.12)",
+              border: "1px solid rgba(255,70,84,0.35)",
+              borderRadius: 3,
+              padding: "4px 10px",
+              color: "#FF4654",
+              fontSize: 10,
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              cursor: "pointer",
+              fontFamily: "'Rajdhani', system-ui, sans-serif",
+            }}
+          >
+            NEXT ›
+          </button>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -194,6 +220,7 @@ export function TutorialOverlay({ onComplete }: TutorialOverlayProps) {
           <TipCard
             key="step1"
             style={{ top: "50%", left: "50%", transform: "translate(-50%, -30px)", marginTop: 60 }}
+            onNext={() => setStep(2)}
           >
             {label("STEP 1 OF 3")}
             {heading("NAVIGATE THE SHADOW REALM")}
@@ -208,6 +235,7 @@ export function TutorialOverlay({ onComplete }: TutorialOverlayProps) {
           <TipCard
             key="step2"
             style={{ bottom: 140, left: "50%", transform: "translateX(-50%)" }}
+            onNext={() => setStep(3)}
           >
             {label("STEP 2 OF 3")}
             {heading("TELEPORT TO ZONES")}
@@ -237,6 +265,7 @@ export function TutorialOverlay({ onComplete }: TutorialOverlayProps) {
           <TipCard
             key="step3"
             style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+            onNext={onComplete}
           >
             {label("STEP 3 OF 3")}
             {heading("APPROACH GLOWING SITES")}

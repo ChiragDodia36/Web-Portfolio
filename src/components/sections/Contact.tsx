@@ -128,7 +128,7 @@ export function Contact() {
                 onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(199,125,255,0.65)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(155,100,221,0.35)"; }}
               >
-                // DIRECT LINK: chiragdodia36@gmail.com
+                {"// DIRECT LINK: chiragdodia36@gmail.com"}
               </a>
             </div>
           </div>

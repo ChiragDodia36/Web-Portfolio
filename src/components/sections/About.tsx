@@ -54,7 +54,7 @@ export function About() {
               </div>
               {/* Section label */}
               <span style={{ fontSize: 9, letterSpacing: "0.2em", color: "rgba(155,100,221,0.35)" }}>
-                // AGENT PROFILE
+                {"// AGENT PROFILE"}
               </span>
             </div>
 

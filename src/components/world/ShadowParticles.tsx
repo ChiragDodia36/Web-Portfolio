@@ -47,6 +47,7 @@ export function ShadowParticles() {
   const sparkRef = useRef<THREE.Points>(null);
 
   // Per-particle Y offsets for drift
+  // eslint-disable-next-line react-hooks/purity
   const smokeOffsets = useMemo(
     () => new Float32Array(SMOKE_COUNT).map(() => Math.random() * Math.PI * 2),
     []

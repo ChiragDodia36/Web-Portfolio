@@ -76,6 +76,7 @@ export function ValorantController() {
     };
   }, [camera]);
 
+  // eslint-disable-next-line react-hooks/immutability
   useFrame(() => {
     const k = keys.current;
 

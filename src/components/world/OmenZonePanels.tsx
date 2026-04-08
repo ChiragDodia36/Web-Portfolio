@@ -38,8 +38,7 @@ function ZonePanel({ active, moving, children, center = false }: ZonePanelProps)
 
   useEffect(() => {
     if (active) {
-      setMounted(true);
-      const t = setTimeout(() => setVisible(true), 10);
+      const t = setTimeout(() => { setMounted(true); setVisible(true); }, 10);
       return () => clearTimeout(t);
     } else {
       setVisible(false);

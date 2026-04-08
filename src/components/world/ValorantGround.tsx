@@ -80,7 +80,7 @@ export function ValorantGround() {
         [0,    0, -36], [0,   0, -64],
         [-30,  0, -38], [30,  0, -38],
         [-30,  0, -20], [30,  0, -20],
-      ].map(([x, _y, z], i) => (
+      ].map(([x, , z], i) => (
         <mesh key={i} position={[x, 0.55, z]}>
           <boxGeometry args={[1.8, 1.1, 1.8]} />
           <meshStandardMaterial
