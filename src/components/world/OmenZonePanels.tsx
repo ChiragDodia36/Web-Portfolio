@@ -41,6 +41,7 @@ function ZonePanel({ active, moving, children, center = false }: ZonePanelProps)
       const t = setTimeout(() => { setMounted(true); setVisible(true); }, 10);
       return () => clearTimeout(t);
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setVisible(false);
       const t = setTimeout(() => setMounted(false), 320);
       return () => clearTimeout(t);
