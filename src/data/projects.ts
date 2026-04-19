@@ -23,14 +23,14 @@ export const projects: Project[] = [
     icon: "⚽",
   },
   {
-    title: "FinSight",
+    title: "BT Transit App",
     description:
-      "Agentic Financial Document Intelligence & Risk Analyst powered by LangGraph",
-    tags: ["LangGraph", "Ollama", "Python"],
-    github: "https://github.com/ChiragDodia36/FinSight",
-    color: "#ff9f0a",
-    category: "ai",
-    icon: "📊",
+      "Real-time bus transit tracking app for Brampton Transit with live route updates and trip planning",
+    tags: ["Swift", "SwiftUI", "CoreLocation", "Transit API"],
+    github: "https://github.com/ChiragDodia36/BT_transit_App",
+    color: "#0a84ff",
+    category: "mobile",
+    icon: "🚌",
   },
   {
     title: "Stock Trading Platform",
@@ -41,16 +41,6 @@ export const projects: Project[] = [
     color: "#f05138",
     category: "mobile",
     icon: "📈",
-  },
-  {
-    title: "E-Voting Blockchain",
-    description:
-      "Decentralized voting system using Ethereum blockchain and smart contracts",
-    tags: ["Solidity", "React", "Ethereum", "Web3.js"],
-    github: "https://github.com/ChiragDodia36/E-Voting-Blockchain",
-    color: "#88aaff",
-    category: "blockchain",
-    icon: "🗳️",
   },
   {
     title: "Netflix Clone",
