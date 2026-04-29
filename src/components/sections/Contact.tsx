@@ -11,7 +11,7 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<FormState>("idle");
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = async (e: { preventDefault(): void }) => {
     e.preventDefault();
     setStatus("loading");
     try {
@@ -20,7 +20,14 @@ export default function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
       });
-      setStatus(res.ok ? "success" : "error");
+      if (res.ok) {
+        setName("");
+        setEmail("");
+        setMessage("");
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
