@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const TABS = [
@@ -15,7 +15,6 @@ type TabId = (typeof TABS)[number]["id"];
 
 export default function BottomTabBar() {
   const [active, setActive] = useState<TabId>("about");
-  const pillRef = useRef<{ [key in TabId]?: DOMRect }>({});
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];

@@ -23,7 +23,7 @@ export default function Header() {
         WebkitBackdropFilter: "blur(20px) saturate(180%)",
         borderBottom: "1px solid var(--card-border)",
         backgroundColor: "var(--card-glass)",
-        transition: "padding 300ms, font-size 300ms",
+        transition: "padding 300ms",
         padding: scrolled ? "10px 20px" : "16px 20px",
       }}
     >
