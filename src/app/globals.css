@@ -31,7 +31,7 @@
 html {
   scroll-behavior: smooth;
   background-color: var(--bg);
-  transition: background 300ms;
+  transition: background 300ms, color 300ms;
   color: var(--text-primary);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   font-size: 16px;
@@ -51,7 +51,14 @@ html {
   .glass-card {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    background: var(--bg);
-    border-color: var(--card-border);
+    background: #FFFFFF;
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+}
+
+@media (prefers-color-scheme: dark) and (prefers-reduced-transparency: reduce) {
+  .glass-card {
+    background: #2C2C2E;
+    border-color: rgba(255, 255, 255, 0.15);
   }
 }
