@@ -7,21 +7,30 @@ export type ExperienceEntry = {
 
 export const experiences: ExperienceEntry[] = [
   {
-    role: "Software Developer",
-    company: "Freelance",
-    period: "2024 – Present",
+    role: "Mobile Developer (iOS & Android)",
+    company: "Indiana University Bloomington",
+    period: "Nov 2025 – Present",
     bullets: [
-      "Built full-stack web apps for clients using Next.js and Node.js.",
-      "Delivered responsive, accessible UIs with Tailwind CSS and Framer Motion.",
+      "Built screen-capture pipelines on iOS (ReplayKit, AVFoundation) and Android (MediaProjection, Kotlin foreground services), reducing per-frame upload size from 9.6 MB to 60 KB — a 99% reduction.",
+      "Visualized sentiment trends across 5 chart types in SwiftUI and Jetpack Compose; improved upload reliability with OkHttp connection pooling and exponential backoff, sustaining 99%+ uptime.",
     ],
   },
   {
-    role: "Frontend Developer Intern",
-    company: "Startup",
-    period: "2023",
+    role: "Mobile Application Developer (Flutter)",
+    company: "L&T Financial Services",
+    period: "Jul 2023 – Jun 2024",
     bullets: [
-      "Developed React components and integrated REST APIs.",
-      "Improved page load performance by 30% through code-splitting and lazy loading.",
+      "Developed cross-platform features for PLANET — L&T Finance's flagship loan app serving 10M+ users — in Flutter/Dart, maintaining feature parity across iOS and Android.",
+      "Authored unit and integration tests catching 3–5 regressions per sprint; triaged Dynatrace traces reducing mean time-to-resolution from ~2 days to under 6 hours.",
+    ],
+  },
+  {
+    role: "React Native Developer",
+    company: "DotMinds LLP",
+    period: "Mar 2022 – Mar 2023",
+    bullets: [
+      "Built and shipped a cross-platform app with React Native, TypeScript, and Redux — handling all screens, REST API integrations, and state management from design hand-off to release.",
+      "Optimised request payloads and response caching, reducing average screen load time by 25% measured during pre-release performance profiling.",
     ],
   },
 ];

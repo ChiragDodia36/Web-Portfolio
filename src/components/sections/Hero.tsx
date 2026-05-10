@@ -76,7 +76,7 @@ export default function Hero() {
             marginBottom: "16px",
           }}
         >
-          Software Developer
+          Mobile Developer
         </p>
         <p
           style={{
@@ -85,7 +85,7 @@ export default function Hero() {
             maxWidth: "320px",
           }}
         >
-          Building clean, performant apps — mobile, web, and everything in between.
+          iOS · Android · Cross-Platform. MS CS @ Indiana University.
         </p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}

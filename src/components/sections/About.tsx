@@ -56,7 +56,7 @@ export default function About() {
               Chirag Dodia
             </h2>
             <p style={{ fontSize: "14px", color: "var(--text-secondary)" }}>
-              Software Developer
+              Mobile Developer (iOS · Android · Cross-Platform)
             </p>
           </div>
         </div>
@@ -67,10 +67,10 @@ export default function About() {
           transition={{ delay: 0.15, duration: 0.4 }}
         >
           <p style={{ color: "var(--text-secondary)", marginBottom: "12px" }}>
-            Hey, I'm Chirag — a software developer who loves building things that feel great to use. I work across the full stack, with a soft spot for clean UIs and fast backends.
+            Hey, I'm Chirag — a mobile developer doing my MS in Computer Science at Indiana University. I build native iOS apps in SwiftUI, Android apps in Jetpack Compose, and cross-platform apps in Flutter and React Native.
           </p>
           <p style={{ color: "var(--text-secondary)" }}>
-            When I'm not coding, I'm probably playing cricket, watching F1, or debugging something that definitely should have worked the first time.
+            When I'm not shipping features, I'm probably watching F1, playing cricket, or debugging something that definitely should have worked the first time.
           </p>
         </motion.div>
       </motion.div>
