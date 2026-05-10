@@ -26,78 +26,100 @@ export default function Projects() {
   }, []);
 
   return (
-    <section id="projects" style={{ padding: "0 20px 40px" }}>
+    <section id="projects" style={{ padding: "0 20px 0" }}>
       <motion.div
-        className="glass-card"
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        style={{ padding: "28px 24px" }}
+        style={{ borderBottom: "1px solid var(--card-border)", padding: "40px 0" }}
       >
         <p
           style={{
-            fontSize: "11px",
-            letterSpacing: "0.12em",
+            fontFamily: "var(--font-mono), ui-monospace, monospace",
+            fontSize: "10px",
+            letterSpacing: "0.16em",
             textTransform: "uppercase",
             color: "var(--text-secondary)",
-            marginBottom: "20px",
+            marginBottom: "28px",
           }}
         >
-          Projects
+          02 — Work
         </p>
 
         {error && (
-          <p style={{ color: "var(--text-secondary)", fontSize: "14px" }}>
-            Couldn't load projects right now.
+          <p
+            style={{
+              fontFamily: "var(--font-mono), ui-monospace, monospace",
+              fontSize: "12px",
+              color: "var(--text-secondary)",
+            }}
+          >
+            Couldn&apos;t load projects.
           </p>
         )}
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
           {repos.map((repo, i) => (
             <motion.a
               key={repo.name}
               href={repo.url}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ delay: i * 0.08, duration: 0.3 }}
+              whileTap={{ scale: 0.99 }}
+              transition={{ delay: i * 0.06, duration: 0.3 }}
               style={{
                 display: "block",
-                padding: "16px",
-                borderRadius: "16px",
-                border: "1px solid var(--card-border)",
-                backgroundColor: "var(--card-glass)",
-                backdropFilter: "blur(10px)",
+                padding: "20px 0",
+                borderBottom:
+                  i < repos.length - 1
+                    ? "1px solid var(--card-border)"
+                    : "none",
                 textDecoration: "none",
               }}
             >
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  marginBottom: "8px",
+                }}
+              >
                 <span
                   style={{
-                    fontSize: "15px",
-                    fontWeight: 500,
+                    fontFamily: "var(--font-serif), Georgia, serif",
+                    fontSize: "18px",
+                    fontWeight: 600,
                     color: "var(--text-primary)",
+                    lineHeight: 1.2,
                   }}
                 >
                   {repo.name}
                 </span>
-                {repo.stars > 0 && (
-                  <span style={{ fontSize: "13px", color: "var(--text-secondary)" }}>
-                    ⭐ {repo.stars}
-                  </span>
-                )}
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono), ui-monospace, monospace",
+                    fontSize: "10px",
+                    color: "var(--text-secondary)",
+                    letterSpacing: "0.06em",
+                    flexShrink: 0,
+                    marginLeft: "8px",
+                  }}
+                >
+                  {formatDate(repo.pushedAt)}
+                </span>
               </div>
               {repo.description && (
                 <p
                   style={{
                     fontSize: "13px",
                     color: "var(--text-secondary)",
-                    marginBottom: "10px",
-                    lineHeight: 1.5,
+                    marginBottom: "12px",
+                    lineHeight: 1.6,
                   }}
                 >
                   {repo.description}
@@ -107,20 +129,29 @@ export default function Projects() {
                 {repo.language && (
                   <span
                     style={{
-                      fontSize: "11px",
-                      padding: "3px 10px",
-                      borderRadius: "100px",
-                      backgroundColor: "var(--accent-amber)",
-                      color: "#1D1D1F",
-                      fontWeight: 500,
+                      fontFamily: "var(--font-mono), ui-monospace, monospace",
+                      fontSize: "10px",
+                      padding: "3px 8px",
+                      borderRadius: "3px",
+                      border: "1px solid var(--accent-red)",
+                      color: "var(--accent-red)",
+                      letterSpacing: "0.06em",
                     }}
                   >
                     {repo.language}
                   </span>
                 )}
-                <span style={{ fontSize: "11px", color: "var(--text-secondary)" }}>
-                  {formatDate(repo.pushedAt)}
-                </span>
+                {repo.stars > 0 && (
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono), ui-monospace, monospace",
+                      fontSize: "10px",
+                      color: "var(--text-secondary)",
+                    }}
+                  >
+                    ★ {repo.stars}
+                  </span>
+                )}
               </div>
             </motion.a>
           ))}
